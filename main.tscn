@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://nkgctlygk64t"]
+
+[ext_resource type="Texture2D" uid="uid://5gh2oridtaew" path="res://resolution.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://d0me2k1ccsvjm" path="res://treasure/treasure_spawner.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://Player.cs" id="4_1bvp3"]
+
+[node name="Main" type="Node" unique_id=459475512]
+
+[node name="Background" type="ColorRect" parent="." unique_id=577372959]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+color = Color(0.7274283, 0.7274284, 0.7274283, 1)
+
+[node name="Player" type="Node" parent="." unique_id=758087407]
+script = ExtResource("4_1bvp3")
+
+[node name="Debug" type="Node2D" parent="." unique_id=322452151]
+visible = false
+
+[node name="Resolution" type="Sprite2D" parent="Debug" unique_id=896799090]
+position = Vector2(16, 16)
+texture = ExtResource("1_ig7tw")
+
+[node name="Resolution2" type="Sprite2D" parent="Debug" unique_id=54897543]
+position = Vector2(64, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ig7tw")
+
+[node name="Resolution3" type="Sprite2D" parent="Debug" unique_id=38113729]
+position = Vector2(144, 48)
+scale = Vector2(3, 3)
+texture = ExtResource("1_ig7tw")
+
+[node name="Resolution4" type="Sprite2D" parent="Debug" unique_id=1754915719]
+position = Vector2(256, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("1_ig7tw")
+
+[node name="TreasureSpawner" parent="." unique_id=1285470224 instance=ExtResource("3_h2yge")]
