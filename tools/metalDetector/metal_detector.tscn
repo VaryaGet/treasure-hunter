@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://co5muft8bq5gy"]
+
+[ext_resource type="Script" uid="uid://cq8eoxh7mrvpe" path="res://tools/metalDetector/MetalDetector.cs" id="1_tvpgg"]
+[ext_resource type="Script" uid="uid://cjuwxsk61lgc6" path="res://tools/metalDetector/Radar.cs" id="2_ac4h6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvpgg"]
+
+[sub_resource type="Gradient" id="Gradient_ralxi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.823741)
+colors = PackedColorArray(1, 1, 1, 1, 0.27450982, 0.45490196, 0.105882354, 1)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tvpgg"]
+gradient = SubResource("Gradient_ralxi")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lygy6"]
+radius = 80.46
+
+[node name="MetalDetector" type="Node2D" unique_id=1072696692]
+script = ExtResource("1_tvpgg")
+
+[node name="Body" type="StaticBody2D" parent="." unique_id=134152674]
+collision_layer = 2
+collision_mask = 0
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=852212171]
+shape = SubResource("CircleShape2D_tvpgg")
+
+[node name="Radar" type="Area2D" parent="." unique_id=2063498146]
+collision_layer = 2
+input_pickable = false
+script = ExtResource("2_ac4h6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Radar" unique_id=1732836439]
+rotation = 1.5707964
+scale = Vector2(0.08154568, 21.038788)
+texture = SubResource("GradientTexture1D_tvpgg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radar" unique_id=2091830218]
+shape = SubResource("CircleShape2D_lygy6")

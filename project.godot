@@ -28,6 +28,11 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="TreasureHunter"
 
+[layer_names]
+
+2d_physics/layer_1="treasure"
+2d_physics/layer_2="tool"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

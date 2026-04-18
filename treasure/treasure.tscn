@@ -13,7 +13,8 @@ script = ExtResource("1_rvv4y")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_80cfm")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1924810820]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1924810820 groups=["treasureCol"]]
+collision_mask = 0
 input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2117578229]

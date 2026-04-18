@@ -1,16 +1,6 @@
 [gd_scene format=3 uid="uid://d0me2k1ccsvjm"]
 
 [ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="1_eqoop"]
-[ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="2_l4bjn"]
 
 [node name="TreasureSpawner" type="Node2D" unique_id=1285470224]
 script = ExtResource("1_eqoop")
-treasure = ExtResource("2_l4bjn")
-
-[node name="Area" type="Node2D" parent="." unique_id=299323480]
-
-[node name="Min" type="Marker2D" parent="Area" unique_id=1346732621]
-position = Vector2(48, 64)
-
-[node name="Max" type="Marker2D" parent="Area" unique_id=1047516036]
-position = Vector2(448, 320)

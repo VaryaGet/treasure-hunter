@@ -4,9 +4,10 @@ using System;
 public partial class Treasure : Node2D
 {
     [Export] public int Hp = 6;
+    [Export] public int Money = 2;
 
     [Signal]
-    public delegate void DeadEventHandler();
+    public delegate void DeadEventHandler(int money);
 
     public override void _Ready()
     {
@@ -17,7 +18,7 @@ public partial class Treasure : Node2D
     {
         if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
         {
-            OnTreasureHit(GetTree().Root.GetNode<Player>("Main/Player").Damage);
+            OnTreasureHit(this.GetPlayer().Damage);
         }
     }
 
@@ -27,7 +28,7 @@ public partial class Treasure : Node2D
         if (Hp <= 0)
         {
             QueueFree();
-            EmitSignalDead();
+            EmitSignalDead(Money);
         }
     }
 }

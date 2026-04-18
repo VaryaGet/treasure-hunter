@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://nkgctlygk64t"]
 
 [ext_resource type="Texture2D" uid="uid://5gh2oridtaew" path="res://resolution.png" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://d0me2k1ccsvjm" path="res://treasure/treasure_spawner.tscn" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://Player.cs" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://common/Player.cs" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://cxptqkfmixngm" path="res://common/PlayArea.cs" id="5_272bh"]
+[ext_resource type="Script" uid="uid://cwxte7iqphdx0" path="res://UI/Score.cs" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://co5muft8bq5gy" path="res://tools/metalDetector/metal_detector.tscn" id="6_7mycd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(416, 296)
 
 [node name="Main" type="Node" unique_id=459475512]
 
-[node name="Background" type="ColorRect" parent="." unique_id=577372959]
+[node name="Common" type="Node" parent="." unique_id=1783096421]
+
+[node name="Background" type="ColorRect" parent="Common" unique_id=577372959]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,8 +25,34 @@ size_flags_horizontal = 4
 mouse_filter = 2
 color = Color(0.7274283, 0.7274284, 0.7274283, 1)
 
-[node name="Player" type="Node" parent="." unique_id=758087407]
+[node name="Player" type="Node" parent="Common" unique_id=758087407]
 script = ExtResource("4_1bvp3")
+Damage = 6
+
+[node name="PlayArea" type="Area2D" parent="Common" unique_id=1304048793]
+position = Vector2(240, 172)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("5_272bh")
+metadata/_edit_group_ = true
+
+[node name="Area" type="CollisionShape2D" parent="Common/PlayArea" unique_id=1462449504]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="TreasureSpawner" type="Node" parent="." unique_id=991498209 node_paths=PackedStringArray("ScoreLabel", "PlayArea")]
+script = ExtResource("2_0xm2m")
+Treasure = ExtResource("4_lquwl")
+ScoreLabel = NodePath("../Score")
+PlayArea = NodePath("../Common/PlayArea")
+
+[node name="MetalDetector" parent="." unique_id=1072696692 instance=ExtResource("6_7mycd")]
+position = Vector2(552, 184)
+
+[node name="Score" type="Label" parent="." unique_id=141910189]
+offset_right = 52.0
+offset_bottom = 23.0
+text = "Score :"
+script = ExtResource("5_lquwl")
 
 [node name="Debug" type="Node2D" parent="." unique_id=322452151]
 visible = false
@@ -41,6 +75,3 @@ texture = ExtResource("1_ig7tw")
 position = Vector2(256, 64)
 scale = Vector2(4, 4)
 texture = ExtResource("1_ig7tw")
-
-[node name="TreasureSpawner" parent="." unique_id=1285470224 instance=ExtResource("3_h2yge")]
-Treasure = ExtResource("4_lquwl")
