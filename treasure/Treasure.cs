@@ -3,16 +3,13 @@ using System;
 
 public partial class Treasure : Node2D
 {
-    [Export] public int hp = 6;
+    [Export] public int Hp = 6;
 
     [Signal]
     public delegate void DeadEventHandler();
 
-    private int _hp;
-
     public override void _Ready()
     {
-        _hp = hp;
         GetNode<StaticBody2D>("StaticBody2D").InputEvent += OnTreasureClicked;
     }
 
@@ -26,8 +23,8 @@ public partial class Treasure : Node2D
 
     private void OnTreasureHit(int damage)
     {
-        _hp -= damage;
-        if (_hp <= 0)
+        Hp -= damage;
+        if (Hp <= 0)
         {
             QueueFree();
             EmitSignalDead();

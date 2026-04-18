@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://5gh2oridtaew" path="res://resolution.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d0me2k1ccsvjm" path="res://treasure/treasure_spawner.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://Player.cs" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="4_lquwl"]
 
 [node name="Main" type="Node" unique_id=459475512]
 
@@ -42,3 +43,4 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_ig7tw")
 
 [node name="TreasureSpawner" parent="." unique_id=1285470224 instance=ExtResource("3_h2yge")]
+Treasure = ExtResource("4_lquwl")

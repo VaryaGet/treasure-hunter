@@ -3,8 +3,8 @@ using System;
 
 public partial class TreasureSpawner : Node2D
 {
-    [Export] public PackedScene treasure;
-    [Export] public int count = 4;
+    [Export] public PackedScene Treasure;
+    [Export] public int MaxCount = 4;
 
     private Vector2 _min = Vector2.Zero;
     private Vector2 _max = Vector2.Zero;
@@ -14,12 +14,29 @@ public partial class TreasureSpawner : Node2D
         _min = GetNode<Marker2D>("Area/Min").GlobalPosition;
         _max = GetNode<Marker2D>("Area/Max").GlobalPosition;
 
-        for (var i = 0; i < count; i++)
+        for (var i = 0; i < MaxCount; i++)
         {
-            var o = treasure.Instantiate<Node2D>();
-            var pos = new Vector2((float)GD.RandRange(_min.X, _max.X), (float)GD.RandRange(_min.Y, _max.Y));
-            o.GlobalPosition = pos;
-            AddChild(o);
+            AddTreasure();
         }
+    }
+
+    public override void _Process(double delta)
+    {
+        var count = GetTree().GetNodeCountInGroup("treasure");
+        if (count < MaxCount)
+        {
+            for (var i = 0; i < MaxCount - count; i++)
+            {
+                AddTreasure();
+            }
+        }
+    }
+
+    private void AddTreasure()
+    {
+        var o = Treasure.Instantiate<Treasure>();
+        var pos = new Vector2((float)GD.RandRange(_min.X, _max.X), (float)GD.RandRange(_min.Y, _max.Y));
+        o.GlobalPosition = pos;
+        AddChild(o);
     }
 }
