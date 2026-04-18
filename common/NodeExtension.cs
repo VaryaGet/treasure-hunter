@@ -7,8 +7,8 @@ public static class NodeExtension
         return node.GetNode<PlayArea>("/root/Main/Common/PlayArea");
     }
 
-    public static Player GetPlayer(this Node node)
+    public static Shovel GetPlayer(this Node node)
     {
-        return node.GetNode<Player>("/root/Main/Common/Player");
+        return node.GetNode<Shovel>("/root/Main/Common/Shovel");
     }
 }

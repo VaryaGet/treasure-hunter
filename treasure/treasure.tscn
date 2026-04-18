@@ -2,12 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://c2nni77t1eri5" path="res://icon.svg" id="1_80cfm"]
 [ext_resource type="Script" uid="uid://c6l6c7mmsu432" path="res://treasure/Treasure.cs" id="1_rvv4y"]
+[ext_resource type="Shader" uid="uid://dheselbn5be48" path="res://treasure/treasure.gdshader" id="2_12f8a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12f8a"]
+resource_local_to_scene = true
+shader = ExtResource("2_12f8a")
+shader_parameter/alpha = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12f8a"]
 radius = 31.016125
 
 [node name="Treasure" type="Node2D" unique_id=753180507 groups=["treasure"]]
 script = ExtResource("1_rvv4y")
+Shader = SubResource("ShaderMaterial_12f8a")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=2052596779]
 scale = Vector2(0.5, 0.5)

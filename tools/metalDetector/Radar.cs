@@ -1,31 +1,19 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 public partial class Radar : Area2D
 {
     private HashSet<Node2D> _treasuresInZone = new();
-    private float _radius;
+    public float Radius { get; private set; }
     private GradientTexture1D _texture;
 
     public override void _Ready()
     {
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
-        _radius = ((CircleShape2D)GetNode<CollisionShape2D>("CollisionShape2D").Shape).Radius;
+        Radius = ((CircleShape2D)GetNode<CollisionShape2D>("CollisionShape2D").Shape).Radius;
         _texture = GetNode<Sprite2D>("Sprite2D").Texture as GradientTexture1D;
-        SetWork(false);
-    }
-
-    public void SetWork(bool isWorking)
-    {
-        if (!isWorking)
-        {
-            UpdateTexture(1);
-        }
-
-        SetProcess(isWorking);
     }
 
     private void OnBodyEntered(Node2D body)
@@ -52,12 +40,12 @@ public partial class Radar : Area2D
         {
             var distance = _treasuresInZone
                 .Select(treasure => GlobalPosition.DistanceTo(treasure.GlobalPosition))
-                .Select(dist => Mathf.Clamp(dist, 0, _radius))
+                .Select(dist => Mathf.Clamp(dist, 0, Radius))
                 .Min();
 
-            if (distance < _radius)
+            if (distance < Radius)
             {
-                var value = Mathf.InverseLerp(0, _radius, distance);
+                var value = Mathf.InverseLerp(0, Radius, distance);
                 UpdateTexture(value);
             }
             else

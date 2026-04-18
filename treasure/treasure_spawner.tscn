@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://d0me2k1ccsvjm"]
-
-[ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="1_eqoop"]
-
-[node name="TreasureSpawner" type="Node2D" unique_id=1285470224]
-script = ExtResource("1_eqoop")

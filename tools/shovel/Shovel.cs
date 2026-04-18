@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Player : Node
+public partial class Shovel : Node
 {
     [Export] public int Damage = 2;
 }

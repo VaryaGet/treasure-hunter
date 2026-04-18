@@ -20,7 +20,6 @@ public partial class MetalDetector : Node2D
         if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
         {
             _isDragging = true;
-            _radar.SetWork(_isDragging);
         }
     }
 
@@ -29,7 +28,6 @@ public partial class MetalDetector : Node2D
         if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: false })
         {
             _isDragging = false;
-            _radar.SetWork(_isDragging);
         }
 
         if (_isDragging && @event is InputEventMouse)
@@ -43,5 +41,10 @@ public partial class MetalDetector : Node2D
         var mouseGlobalPos = GetGlobalMousePosition();
         var clampedPos = _playArea.GetClampedPosition(mouseGlobalPos);
         GlobalPosition = clampedPos;
+    }
+
+    public bool IsInZone(Vector2 position)
+    {
+        return Geometry2D.IsPointInCircle(position, GlobalPosition, _radar.Radius);
     }
 }
