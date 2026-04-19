@@ -79,6 +79,7 @@ public partial class Treasure : Node2D
         _coin.Hide();
         _grave.Hide();
         _cross.Show();
+        RemoveFromGroup(Groups.PlayersTreasure);
     }
 
     private void DiggingTreasure()

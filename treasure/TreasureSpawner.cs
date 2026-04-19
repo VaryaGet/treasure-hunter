@@ -11,17 +11,17 @@ public partial class TreasureSpawner : Node
 
     public override void _Process(double delta)
     {
-        var count = GetTree().GetNodeCountInGroup(Groups.Treasure);
+        var count = GetTree().GetNodeCountInGroup(Groups.PlayersTreasure);
         if (count < MaxCount)
         {
             for (var i = 0; i < MaxCount - count; i++)
             {
-                AddTreasure(ChoosePosition(), false);
+                AddTreasure(ChoosePosition(), false, true);
             }
         }
     }
 
-    public void AddTreasure(Vector2 position, bool isFound)
+    public void AddTreasure(Vector2 position, bool isFound, bool isForPlayer = false)
     {
         if (position != Vector2.Zero)
         {
@@ -32,6 +32,11 @@ public partial class TreasureSpawner : Node
             if (isFound)
             {
                 o.TreasureBody.FoundTreasure();
+            }
+
+            if (isForPlayer)
+            {
+                o.AddToGroup(Groups.PlayersTreasure);
             }
         }
     }

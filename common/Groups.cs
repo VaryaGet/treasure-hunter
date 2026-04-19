@@ -2,4 +2,5 @@
 {
     public static readonly string TreasureCollision = "treasureCol";
     public static readonly string Treasure = "treasure";
+    public static readonly string PlayersTreasure = "playersTreasure";
 }

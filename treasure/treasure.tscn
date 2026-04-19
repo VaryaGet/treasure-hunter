@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7oq2"]
 shader = ExtResource("4_ys2ic")
-shader_parameter/t = 1.7149999999999999
+shader_parameter/t = 1.715
 shader_parameter/step = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12f8a"]
