@@ -29,6 +29,7 @@ public partial class TreasureSpawner : Node
             o.GlobalPosition = position;
             AddChild(o);
             o.Dead += ScoreLabel.AddScore;
+            o.CurrAnimation = GD.RandRange(1, 4);
             if (isFound)
             {
                 o.TreasureBody.FoundTreasure();

@@ -7,9 +7,12 @@ public partial class Treasure : Node2D
     [Export] public int Money = 2;
 
     public TreasureBody TreasureBody { get; private set; }
+    public bool IsBusy { get; set; }
+    public int CurrAnimation { get; set; }
+
     private Sprite2D _cross;
     private Sprite2D _grave;
-    private Sprite2D _coin;
+    private AnimatedSprite2D _coin;
     private Timer _dieTimer;
 
     [Signal]
@@ -17,7 +20,6 @@ public partial class Treasure : Node2D
 
     private int _hp;
     private bool _isDying = false;
-    public bool IsBusy { get; set; }
 
     [Signal]
     public delegate void TreasureHitEventHandler(int damage);
@@ -29,7 +31,7 @@ public partial class Treasure : Node2D
         TreasureBody.InputEvent += OnTreasureClicked;
         TreasureBody.Found += CrossTreasure;
 
-        _coin = GetNode<Sprite2D>("Coin");
+        _coin = GetNode<AnimatedSprite2D>("Coin");
         _grave = GetNode<Sprite2D>("Grave");
         _cross = GetNode<Sprite2D>("Cross");
         NewTreasure();
@@ -103,5 +105,8 @@ public partial class Treasure : Node2D
         _coin.Show();
         _grave.Show();
         _cross.Hide();
+
+        _coin.SetAnimation(CurrAnimation.ToString());
+        _coin.Play();
     }
 }

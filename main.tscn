@@ -108,3 +108,5 @@ offset_right = 52.0
 offset_bottom = 23.0
 text = "Score :"
 script = ExtResource("5_lquwl")
+
+[node name="UI" type="Node" parent="." unique_id=1410048371]
