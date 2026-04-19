@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://co5muft8bq5gy" path="res://tools/metalDetector/metal_detector.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cxmbgpq8qgu3j" path="res://UI/background/cloud.png" id="6_vivmo"]
 [ext_resource type="Texture2D" uid="uid://eae6nm70dg4o" path="res://UI/background/board.png" id="7_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://cge3vmcw401aa" path="res://helpers/digger/digger.tscn" id="13_vivmo"]
 [ext_resource type="PackedScene" uid="uid://djjssbrfs7qt8" path="res://helpers/searcher/searcher.tscn" id="14_w48qg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vivmo"]
@@ -28,7 +29,8 @@ size = Vector2(466, 254)
 
 [node name="Common" type="Node" parent="." unique_id=1783096421]
 
-[node name="Background" type="Node" parent="Common" unique_id=1860363491]
+[node name="Background" type="Node2D" parent="Common" unique_id=945194038]
+z_index = -1
 
 [node name="Background2" type="Sprite2D" parent="Common/Background" unique_id=1484850350]
 position = Vector2(320, 180)
@@ -69,21 +71,40 @@ metadata/_edit_group_ = true
 [node name="Area" type="CollisionShape2D" parent="Common/PlayArea" unique_id=1462449504]
 shape = SubResource("RectangleShape2D_272bh")
 
-[node name="TreasureSpawner" type="Node" parent="Common" unique_id=991498209 node_paths=PackedStringArray("ScoreLabel", "PlayArea", "MetalDetector")]
+[node name="Holder" type="Node2D" parent="Common" unique_id=1297264527]
+y_sort_enabled = true
+
+[node name="TreasureSpawner" type="Node2D" parent="Common/Holder" unique_id=842667182 node_paths=PackedStringArray("ScoreLabel", "PlayArea", "MetalDetector")]
+y_sort_enabled = true
 script = ExtResource("2_0xm2m")
 Treasure = ExtResource("4_lquwl")
-ScoreLabel = NodePath("../../Score")
-PlayArea = NodePath("../PlayArea")
-MetalDetector = NodePath("../../MetalDetector")
+ScoreLabel = NodePath("../../../Score")
+PlayArea = NodePath("../../PlayArea")
+MetalDetector = NodePath("../../../MetalDetector")
+
+[node name="SearcherSpawner" type="Node2D" parent="Common/Holder" unique_id=199261734]
+y_sort_enabled = true
+
+[node name="Searcher" parent="Common/Holder/SearcherSpawner" unique_id=912260588 instance=ExtResource("14_w48qg")]
+position = Vector2(136, 242)
+
+[node name="Searcher2" parent="Common/Holder/SearcherSpawner" unique_id=679433863 instance=ExtResource("14_w48qg")]
+position = Vector2(136, 242)
+
+[node name="DiggerSpawner" type="Node2D" parent="Common/Holder" unique_id=480349043]
+y_sort_enabled = true
+
+[node name="Digger" parent="Common/Holder/DiggerSpawner" unique_id=29054709 instance=ExtResource("13_vivmo")]
+position = Vector2(46, 314)
+
+[node name="Digger2" parent="Common/Holder/DiggerSpawner" unique_id=1167651860 instance=ExtResource("13_vivmo")]
+position = Vector2(140, 314)
 
 [node name="MetalDetector" parent="." unique_id=1072696692 instance=ExtResource("6_7mycd")]
-position = Vector2(334, 256)
+position = Vector2(258, 234)
 
 [node name="Score" type="Label" parent="." unique_id=141910189]
 offset_right = 52.0
 offset_bottom = 23.0
 text = "Score :"
 script = ExtResource("5_lquwl")
-
-[node name="Searcher" parent="." unique_id=912260588 instance=ExtResource("14_w48qg")]
-position = Vector2(112, 206)

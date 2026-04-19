@@ -20,6 +20,7 @@ gradient = SubResource("Gradient_ralxi")
 radius = 80.46
 
 [node name="MetalDetector" type="Node2D" unique_id=1072696692]
+z_index = 3
 script = ExtResource("1_tvpgg")
 
 [node name="Body" type="StaticBody2D" parent="." unique_id=134152674]

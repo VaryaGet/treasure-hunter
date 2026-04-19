@@ -17,6 +17,10 @@ public partial class Treasure : Node2D
 
     private int _hp;
     private bool _isDying = false;
+    public bool IsBusy { get; set; }
+
+    [Signal]
+    public delegate void TreasureHitEventHandler(int damage);
 
     public override void _Ready()
     {
@@ -39,6 +43,11 @@ public partial class Treasure : Node2D
     {
         var shader = (ShaderMaterial)_coin.Material;
         shader.SetShaderParameter("t", _dieTimer.WaitTime - _dieTimer.TimeLeft);
+    }
+
+    public void Hit(int damage)
+    {
+        OnTreasureHit(damage);
     }
 
     private void OnTreasureClicked(Node viewport, InputEvent @event, long shapeIdx)

@@ -8,8 +8,9 @@
 [ext_resource type="Script" uid="uid://4cvbmlsmp7g8" path="res://treasure/TreasureBody.cs" id="6_uh85m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7oq2"]
+resource_local_to_scene = true
 shader = ExtResource("4_ys2ic")
-shader_parameter/t = 1.715
+shader_parameter/t = 0.84
 shader_parameter/step = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12f8a"]
@@ -17,18 +18,19 @@ radius = 31.016125
 
 [node name="Treasure" type="Node2D" unique_id=753180507 groups=["treasure"]]
 script = ExtResource("1_rvv4y")
+Hp = 1
 
 [node name="Grave" type="Sprite2D" parent="." unique_id=754841629]
 position = Vector2(0, 3)
 texture = ExtResource("5_uh85m")
 
 [node name="Coin" type="Sprite2D" parent="." unique_id=2052596779]
+z_index = 1
 material = SubResource("ShaderMaterial_y7oq2")
 scale = Vector2(0.09375, 0.09375)
 texture = ExtResource("1_80cfm")
 
 [node name="Cross" type="Sprite2D" parent="." unique_id=584622012]
-visible = false
 position = Vector2(0, -2)
 texture = ExtResource("4_a3u86")
 

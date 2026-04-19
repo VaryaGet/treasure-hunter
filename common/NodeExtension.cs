@@ -14,6 +14,6 @@ public static class NodeExtension
 
     public static TreasureSpawner GetTreasureSpawner(this Node node)
     {
-        return node.GetNode<TreasureSpawner>("/root/Main/Common/TreasureSpawner");
+        return node.GetNode<TreasureSpawner>("/root/Main/Common/Holder/TreasureSpawner");
     }
 }
