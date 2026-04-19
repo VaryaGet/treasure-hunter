@@ -7,6 +7,9 @@ public class Balance : IBalance
 {
     private Dictionary<UpgradeType, Dictionary<int, BValue>> _balances;
 
+    public Balance(string path) : this(new BCsv().balanced(path))
+    { }
+
     public Balance(Dictionary<UpgradeType, Dictionary<int, BValue>> balances)
     {
         this._balances = balances;
