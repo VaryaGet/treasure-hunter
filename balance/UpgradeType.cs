@@ -1,0 +1,16 @@
+namespace TreasureHunter.balance;
+
+public enum UpgradeType
+{
+    DIGGER_QUANTITY,
+    DIGGER_SHOVEL,
+    DIGGER_RUN,
+    TREASURE_BRONSE,
+    TREASURE_SILVER,
+    TREASURE_GOLD,
+    SEARCHER_QUANTITY,
+    SEARCHER_SEARCH,
+    SEARCHER_QUALITY,
+    TREASURE_TIER,
+    QUALITY
+}
