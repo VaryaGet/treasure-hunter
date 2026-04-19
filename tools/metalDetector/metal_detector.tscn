@@ -36,6 +36,7 @@ shape = SubResource("RectangleShape2D_2w0tn")
 collision_layer = 2
 input_pickable = false
 script = ExtResource("2_ac4h6")
+FindPercentage = 0.8
 
 [node name="Level" type="Sprite2D" parent="Radar" unique_id=1732836439]
 position = Vector2(-5.4584675, -33.36359)

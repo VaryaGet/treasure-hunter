@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nkgctlygk64t"]
 
 [ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="2_0xm2m"]
+[ext_resource type="Shader" uid="uid://mmqtkki77536" path="res://UI/background/sea.gdshader" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dqiu516ythlny" path="res://UI/background/background.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://tools/shovel/Shovel.cs" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="4_lquwl"]
@@ -13,8 +14,17 @@
 [ext_resource type="PackedScene" uid="uid://co5muft8bq5gy" path="res://tools/metalDetector/metal_detector.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cxmbgpq8qgu3j" path="res://UI/background/cloud.png" id="6_vivmo"]
 [ext_resource type="Texture2D" uid="uid://eae6nm70dg4o" path="res://UI/background/board.png" id="7_2cqfq"]
+[ext_resource type="Script" uid="uid://dme0abdmqj5fx" path="res://helpers/searcher/SearcherSpawner.cs" id="13_cegan"]
 [ext_resource type="PackedScene" uid="uid://cge3vmcw401aa" path="res://helpers/digger/digger.tscn" id="13_vivmo"]
 [ext_resource type="PackedScene" uid="uid://djjssbrfs7qt8" path="res://helpers/searcher/searcher.tscn" id="14_w48qg"]
+[ext_resource type="Script" uid="uid://bff6l6omwwd0f" path="res://helpers/digger/DiggerSpawner.cs" id="15_82xsv"]
+[ext_resource type="Texture2D" uid="uid://b5qggprn0uilu" path="res://UI/upgrades/paper_2.png" id="19_getpj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yaehf"]
+shader = ExtResource("2_2cqfq")
+shader_parameter/wave_strength = 0.005
+shader_parameter/wave_speed = 1.47
+shader_parameter/effect_height = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vivmo"]
 shader = ExtResource("4_w48qg")
@@ -37,6 +47,7 @@ position = Vector2(320, 180)
 texture = ExtResource("3_dg77c")
 
 [node name="Sea" type="Sprite2D" parent="Common/Background" unique_id=756109202]
+material = SubResource("ShaderMaterial_yaehf")
 position = Vector2(320, 180)
 texture = ExtResource("4_ycdy4")
 
@@ -84,6 +95,7 @@ MetalDetector = NodePath("../../../MetalDetector")
 
 [node name="SearcherSpawner" type="Node2D" parent="Common/Holder" unique_id=199261734]
 y_sort_enabled = true
+script = ExtResource("13_cegan")
 
 [node name="Searcher" parent="Common/Holder/SearcherSpawner" unique_id=912260588 instance=ExtResource("14_w48qg")]
 position = Vector2(136, 242)
@@ -93,6 +105,7 @@ position = Vector2(136, 242)
 
 [node name="DiggerSpawner" type="Node2D" parent="Common/Holder" unique_id=480349043]
 y_sort_enabled = true
+script = ExtResource("15_82xsv")
 
 [node name="Digger" parent="Common/Holder/DiggerSpawner" unique_id=29054709 instance=ExtResource("13_vivmo")]
 position = Vector2(46, 314)
@@ -109,4 +122,40 @@ offset_bottom = 23.0
 text = "Score :"
 script = ExtResource("5_lquwl")
 
-[node name="UI" type="Node" parent="." unique_id=1410048371]
+[node name="Ui" type="Control" parent="." unique_id=1600824417]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_bottom = 360.0
+grow_horizontal = 0
+
+[node name="Control2" type="Control" parent="Ui" unique_id=444393543]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 85.0
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Ui/Control2" unique_id=942599239]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 20.0
+offset_right = 45.5
+offset_bottom = 81.0
+grow_horizontal = 2
+icon = ExtResource("19_getpj")
+
+[node name="Control" type="Control" parent="Ui" unique_id=836911771]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 85.0
+grow_horizontal = 2
+grow_vertical = 2

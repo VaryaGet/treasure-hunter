@@ -1,11 +1,24 @@
 [gd_scene format=3 uid="uid://dkp4xnhyepfbv"]
 
 [ext_resource type="Script" uid="uid://c6l6c7mmsu432" path="res://treasure/Treasure.cs" id="1_rvv4y"]
+[ext_resource type="Shader" uid="uid://bdtj38ncsik0j" path="res://treasure/label.gdshader" id="2_ys2ic"]
+[ext_resource type="Shader" uid="uid://b4dtcqy70hkki" path="res://treasure/fade.gdshader" id="3_y7oq2"]
 [ext_resource type="Texture2D" uid="uid://d1l2phhyqq14u" path="res://treasure/cross.png" id="4_a3u86"]
 [ext_resource type="Shader" uid="uid://djcbkkltby5bj" path="res://treasure/coin/coin.gdshader" id="4_ys2ic"]
 [ext_resource type="Texture2D" uid="uid://bqfcas82grj5c" path="res://treasure/grave.png" id="5_uh85m"]
 [ext_resource type="Texture2D" uid="uid://cds5mquikkau6" path="res://treasure/coin/coins.png" id="5_ys2ic"]
 [ext_resource type="Script" uid="uid://4cvbmlsmp7g8" path="res://treasure/TreasureBody.cs" id="6_uh85m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7oq2"]
+resource_local_to_scene = true
+shader = ExtResource("2_ys2ic")
+shader_parameter/alpha = 1.0
+shader_parameter/speed = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3q50f"]
+resource_local_to_scene = true
+shader = ExtResource("3_y7oq2")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uh85m"]
 resource_local_to_scene = true
@@ -155,7 +168,25 @@ radius = 31.016125
 script = ExtResource("1_rvv4y")
 Hp = 1
 
+[node name="Label" type="Label" parent="." unique_id=1683482826]
+material = SubResource("ShaderMaterial_y7oq2")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -28.0
+offset_right = 14.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "1"
+horizontal_alignment = 1
+
 [node name="Grave" type="Sprite2D" parent="." unique_id=754841629]
+material = SubResource("ShaderMaterial_3q50f")
 position = Vector2(0, 3)
 texture = ExtResource("5_uh85m")
 
@@ -164,7 +195,7 @@ z_index = 1
 material = SubResource("ShaderMaterial_uh85m")
 sprite_frames = SubResource("SpriteFrames_e1u2g")
 animation = &"2"
-frame_progress = 0.37651345
+frame_progress = 0.43512583
 
 [node name="Cross" type="Sprite2D" parent="." unique_id=584622012]
 position = Vector2(0, -2)
