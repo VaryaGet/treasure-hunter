@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cq8eoxh7mrvpe" path="res://tools/metalDetector/MetalDetector.cs" id="1_tvpgg"]
 [ext_resource type="Script" uid="uid://cjuwxsk61lgc6" path="res://tools/metalDetector/Radar.cs" id="2_ac4h6"]
+[ext_resource type="Texture2D" uid="uid://cmcmekvm0r481" path="res://tools/metalDetector/metal_detector_1.png" id="3_2w0tn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tvpgg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2w0tn"]
+size = Vector2(24, 67)
 
 [sub_resource type="Gradient" id="Gradient_ralxi"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.823741)
-colors = PackedColorArray(1, 1, 1, 1, 0.27450982, 0.45490196, 0.105882354, 1)
+offsets = PackedFloat32Array(0, 0.42215568)
+colors = PackedColorArray(0.12156863, 0.15294118, 0.23137255, 1, 0.09803922, 1, 0, 1)
 metadata/_snap_count = 2
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_tvpgg"]
@@ -26,17 +28,23 @@ collision_mask = 0
 input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=852212171]
-shape = SubResource("CircleShape2D_tvpgg")
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_2w0tn")
 
 [node name="Radar" type="Area2D" parent="." unique_id=2063498146]
 collision_layer = 2
 input_pickable = false
 script = ExtResource("2_ac4h6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Radar" unique_id=1732836439]
+[node name="Level" type="Sprite2D" parent="Radar" unique_id=1732836439]
+position = Vector2(6.832, -33.271244)
 rotation = 1.5707964
-scale = Vector2(0.08154568, 21.038788)
+scale = Vector2(0.050068416, 12.579735)
 texture = SubResource("GradientTexture1D_tvpgg")
+
+[node name="MetalDetector1" type="Sprite2D" parent="Radar" unique_id=438949832]
+position = Vector2(0, -24)
+texture = ExtResource("3_2w0tn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Radar" unique_id=2091830218]
 shape = SubResource("CircleShape2D_lygy6")

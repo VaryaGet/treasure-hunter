@@ -1,35 +1,65 @@
 [gd_scene format=3 uid="uid://nkgctlygk64t"]
 
-[ext_resource type="Texture2D" uid="uid://5gh2oridtaew" path="res://resolution.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dqiu516ythlny" path="res://UI/background/background.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://tools/shovel/Shovel.cs" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://ctqnyhqpd8gy2" path="res://UI/background/sun.png" id="4_vivmo"]
+[ext_resource type="Shader" uid="uid://cxm2xq1p6v3vk" path="res://UI/background/cloud.gdshader" id="4_w48qg"]
+[ext_resource type="Texture2D" uid="uid://gr2moh81hedi" path="res://UI/background/sea.png" id="4_ycdy4"]
 [ext_resource type="Script" uid="uid://cxptqkfmixngm" path="res://common/PlayArea.cs" id="5_272bh"]
 [ext_resource type="Script" uid="uid://cwxte7iqphdx0" path="res://UI/Score.cs" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cq7ueq2vuqb7q" path="res://UI/background/sky.png" id="5_w48qg"]
 [ext_resource type="PackedScene" uid="uid://co5muft8bq5gy" path="res://tools/metalDetector/metal_detector.tscn" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://cxmbgpq8qgu3j" path="res://UI/background/cloud.png" id="6_vivmo"]
+[ext_resource type="Texture2D" uid="uid://eae6nm70dg4o" path="res://UI/background/board.png" id="7_2cqfq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vivmo"]
+shader = ExtResource("4_w48qg")
+shader_parameter/speed = 0.01
+shader_parameter/speed2 = 1.16
+shader_parameter/cloud_texture = ExtResource("6_vivmo")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
-size = Vector2(416, 296)
+size = Vector2(466, 254)
 
 [node name="Main" type="Node" unique_id=459475512]
 
 [node name="Common" type="Node" parent="." unique_id=1783096421]
 
-[node name="Background" type="ColorRect" parent="Common" unique_id=577372959]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-mouse_filter = 2
-color = Color(0.7274283, 0.7274284, 0.7274283, 1)
+[node name="Background" type="Node" parent="Common" unique_id=1860363491]
+
+[node name="Background2" type="Sprite2D" parent="Common/Background" unique_id=1484850350]
+position = Vector2(320, 180)
+texture = ExtResource("3_dg77c")
+
+[node name="Sea" type="Sprite2D" parent="Common/Background" unique_id=756109202]
+position = Vector2(320, 180)
+texture = ExtResource("4_ycdy4")
+
+[node name="Sky" type="Sprite2D" parent="Common/Background" unique_id=410935383]
+position = Vector2(320, 180)
+texture = ExtResource("5_w48qg")
+
+[node name="Sun" type="Sprite2D" parent="Common/Background" unique_id=154132598]
+position = Vector2(50, 18)
+texture = ExtResource("4_vivmo")
+
+[node name="Cloud" type="Sprite2D" parent="Common/Background" unique_id=2099241622]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_vivmo")
+position = Vector2(320, 14)
+texture = ExtResource("6_vivmo")
+
+[node name="Board" type="Sprite2D" parent="Common/Background" unique_id=709912869]
+position = Vector2(320, 180)
+texture = ExtResource("7_2cqfq")
 
 [node name="Shovel" type="Node" parent="Common" unique_id=758087407]
 script = ExtResource("4_1bvp3")
 
 [node name="PlayArea" type="Area2D" parent="Common" unique_id=1304048793]
-position = Vector2(248, 184)
+position = Vector2(236, 230)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("5_272bh")
@@ -46,32 +76,10 @@ PlayArea = NodePath("../Common/PlayArea")
 MetalDetector = NodePath("../MetalDetector")
 
 [node name="MetalDetector" parent="." unique_id=1072696692 instance=ExtResource("6_7mycd")]
-position = Vector2(552, 184)
+position = Vector2(334, 256)
 
 [node name="Score" type="Label" parent="." unique_id=141910189]
 offset_right = 52.0
 offset_bottom = 23.0
 text = "Score :"
 script = ExtResource("5_lquwl")
-
-[node name="Debug" type="Node2D" parent="." unique_id=322452151]
-visible = false
-
-[node name="Resolution" type="Sprite2D" parent="Debug" unique_id=896799090]
-position = Vector2(16, 16)
-texture = ExtResource("1_ig7tw")
-
-[node name="Resolution2" type="Sprite2D" parent="Debug" unique_id=54897543]
-position = Vector2(64, 32)
-scale = Vector2(2, 2)
-texture = ExtResource("1_ig7tw")
-
-[node name="Resolution3" type="Sprite2D" parent="Debug" unique_id=38113729]
-position = Vector2(144, 48)
-scale = Vector2(3, 3)
-texture = ExtResource("1_ig7tw")
-
-[node name="Resolution4" type="Sprite2D" parent="Debug" unique_id=1754915719]
-position = Vector2(256, 64)
-scale = Vector2(4, 4)
-texture = ExtResource("1_ig7tw")

@@ -6,13 +6,13 @@ public partial class MetalDetector : Node2D
     private PlayArea _playArea;
     private bool _isDragging = false;
     private Radar _radar;
+    private Vector2 _dragOffset;
 
     public override void _Ready()
     {
         _playArea = this.GetPlayArea();
         _radar = GetNode<Radar>("Radar");
         GetNode<StaticBody2D>("Body").InputEvent += OnInputEvent;
-        GetViewport().GetVisibleRect();
     }
 
     private void OnInputEvent(Node viewport, InputEvent @event, long shapeIdx)
@@ -20,6 +20,7 @@ public partial class MetalDetector : Node2D
         if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
         {
             _isDragging = true;
+            _dragOffset = GlobalPosition - GetGlobalMousePosition();
         }
     }
 
@@ -39,7 +40,8 @@ public partial class MetalDetector : Node2D
     private void UpdatePosition()
     {
         var mouseGlobalPos = GetGlobalMousePosition();
-        var clampedPos = _playArea.GetClampedPosition(mouseGlobalPos);
+        var desiredPos = mouseGlobalPos + _dragOffset;
+        var clampedPos = _playArea.GetClampedPosition(desiredPos);
         GlobalPosition = clampedPos;
     }
 

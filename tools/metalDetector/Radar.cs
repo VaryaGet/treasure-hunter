@@ -13,7 +13,7 @@ public partial class Radar : Area2D
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
         Radius = ((CircleShape2D)GetNode<CollisionShape2D>("CollisionShape2D").Shape).Radius;
-        _texture = GetNode<Sprite2D>("Sprite2D").Texture as GradientTexture1D;
+        _texture = GetNode<Sprite2D>("Level").Texture as GradientTexture1D;
     }
 
     private void OnBodyEntered(Node2D body)
