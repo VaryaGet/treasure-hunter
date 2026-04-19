@@ -6,11 +6,13 @@ public partial class PlayArea : Area2D
     private Vector2 Min { get; set; }
     private Vector2 Max { get; set; }
 
+    private RectangleShape2D _shape;
+
     public override void _Ready()
     {
-        var shape = GetNode<CollisionShape2D>("Area").Shape as RectangleShape2D;
-        Min = GlobalPosition - shape.Size / 2;
-        Max = GlobalPosition + shape.Size / 2;
+        _shape = GetNode<CollisionShape2D>("Area").Shape as RectangleShape2D;
+        Min = GlobalPosition - _shape.Size / 2;
+        Max = GlobalPosition + _shape.Size / 2;
     }
 
     public Vector2 GetRandomPosition()

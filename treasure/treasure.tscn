@@ -2,27 +2,47 @@
 
 [ext_resource type="Texture2D" uid="uid://c2nni77t1eri5" path="res://icon.svg" id="1_80cfm"]
 [ext_resource type="Script" uid="uid://c6l6c7mmsu432" path="res://treasure/Treasure.cs" id="1_rvv4y"]
-[ext_resource type="Shader" uid="uid://dheselbn5be48" path="res://treasure/treasure.gdshader" id="2_12f8a"]
+[ext_resource type="Texture2D" uid="uid://d1l2phhyqq14u" path="res://treasure/cross.png" id="4_a3u86"]
+[ext_resource type="Shader" uid="uid://djcbkkltby5bj" path="res://treasure/coin.gdshader" id="4_ys2ic"]
+[ext_resource type="Texture2D" uid="uid://bqfcas82grj5c" path="res://treasure/grave.png" id="5_uh85m"]
+[ext_resource type="Script" uid="uid://4cvbmlsmp7g8" path="res://treasure/TreasureBody.cs" id="6_uh85m"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_12f8a"]
-resource_local_to_scene = true
-shader = ExtResource("2_12f8a")
-shader_parameter/alpha = 0.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7oq2"]
+shader = ExtResource("4_ys2ic")
+shader_parameter/t = 1.7149999999999999
+shader_parameter/step = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12f8a"]
 radius = 31.016125
 
 [node name="Treasure" type="Node2D" unique_id=753180507 groups=["treasure"]]
 script = ExtResource("1_rvv4y")
-Shader = SubResource("ShaderMaterial_12f8a")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=2052596779]
-scale = Vector2(0.5, 0.5)
+[node name="Grave" type="Sprite2D" parent="." unique_id=754841629]
+position = Vector2(0, 3)
+texture = ExtResource("5_uh85m")
+
+[node name="Coin" type="Sprite2D" parent="." unique_id=2052596779]
+material = SubResource("ShaderMaterial_y7oq2")
+scale = Vector2(0.09375, 0.09375)
 texture = ExtResource("1_80cfm")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1924810820 groups=["treasureCol"]]
+[node name="Cross" type="Sprite2D" parent="." unique_id=584622012]
+visible = false
+position = Vector2(0, -2)
+texture = ExtResource("4_a3u86")
+
+[node name="TreasureBody" type="StaticBody2D" parent="." unique_id=1924810820 groups=["treasureCol"]]
 collision_mask = 0
 input_pickable = true
+script = ExtResource("6_uh85m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2117578229]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureBody" unique_id=2117578229]
 shape = SubResource("CircleShape2D_12f8a")
+
+[node name="FindTimer" type="Timer" parent="TreasureBody" unique_id=955656704]
+wait_time = 0.2
+one_shot = true
+
+[node name="DieTimer" type="Timer" parent="." unique_id=2129620504]
+wait_time = 2.0

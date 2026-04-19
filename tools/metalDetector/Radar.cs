@@ -4,8 +4,12 @@ using System.Linq;
 
 public partial class Radar : Area2D
 {
-    private HashSet<Node2D> _treasuresInZone = new();
+    [Export(PropertyHint.Range, "0.0,1.0,0.01")]
+    public float FindPercentage = 0.85f;
+
     public float Radius { get; private set; }
+
+    private HashSet<TreasureBody> _treasuresInZone = new();
     private GradientTexture1D _texture;
 
     public override void _Ready()
@@ -20,7 +24,10 @@ public partial class Radar : Area2D
     {
         if (body.IsInGroup(Groups.TreasureCollision))
         {
-            _treasuresInZone.Add(body);
+            if (!((TreasureBody)body).IsFound)
+            {
+                _treasuresInZone.Add((TreasureBody)body);
+            }
         }
     }
 
@@ -28,34 +35,36 @@ public partial class Radar : Area2D
     {
         if (body.IsInGroup(Groups.TreasureCollision))
         {
-            _treasuresInZone.Remove(body);
+            _treasuresInZone.Remove((TreasureBody)body);
         }
     }
 
     public override void _Process(double delta)
     {
-        _treasuresInZone.RemoveWhere(t => !IsInstanceValid(t));
+        _treasuresInZone.RemoveWhere(t => !IsInstanceValid(t) || t.IsFound);
 
         if (_treasuresInZone.Count != 0)
         {
-            var distance = _treasuresInZone
-                .Select(treasure => GlobalPosition.DistanceTo(treasure.GlobalPosition))
-                .Select(dist => Mathf.Clamp(dist, 0, Radius))
-                .Min();
+            var maxDist = 0f;
+            foreach (var treasureBody in _treasuresInZone)
+            {
+                var dist = GlobalPosition.DistanceTo(treasureBody.GlobalPosition);
+                var clamp = Mathf.Clamp(dist, 0, Radius);
+                var nDist = 1 - Mathf.InverseLerp(0, Radius, clamp); // 0 - far 1 - close
 
-            if (distance < Radius)
-            {
-                var value = Mathf.InverseLerp(0, Radius, distance);
-                UpdateTexture(value);
+                treasureBody.CheckTimer(nDist >= FindPercentage);
+
+                if (maxDist < nDist)
+                {
+                    maxDist = nDist;
+                }
             }
-            else
-            {
-                UpdateTexture(1);
-            }
+
+            UpdateTexture(maxDist);
         }
         else
         {
-            UpdateTexture(1);
+            UpdateTexture(0);
         }
     }
 

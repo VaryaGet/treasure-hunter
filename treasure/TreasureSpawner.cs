@@ -16,20 +16,23 @@ public partial class TreasureSpawner : Node
         {
             for (var i = 0; i < MaxCount - count; i++)
             {
-                AddTreasure();
+                AddTreasure(ChoosePosition(), false);
             }
         }
     }
 
-    private void AddTreasure()
+    public void AddTreasure(Vector2 position, bool isFound)
     {
-        var position = ChoosePosition();
         if (position != Vector2.Zero)
         {
             var o = Treasure.Instantiate<Treasure>();
             o.GlobalPosition = position;
             AddChild(o);
             o.Dead += ScoreLabel.AddScore;
+            if (isFound)
+            {
+                o.TreasureBody.FoundTreasure();
+            }
         }
     }
 

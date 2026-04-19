@@ -11,4 +11,9 @@ public static class NodeExtension
     {
         return node.GetNode<Shovel>("/root/Main/Common/Shovel");
     }
+
+    public static TreasureSpawner GetTreasureSpawner(this Node node)
+    {
+        return node.GetNode<TreasureSpawner>("/root/Main/Common/TreasureSpawner");
+    }
 }

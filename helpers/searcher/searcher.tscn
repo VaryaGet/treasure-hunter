@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://djjssbrfs7qt8"]
+
+[ext_resource type="Script" uid="uid://bqgvsw32ix5hp" path="res://helpers/searcher/Searcher.cs" id="1_083ib"]
+[ext_resource type="Texture2D" uid="uid://c2nni77t1eri5" path="res://icon.svg" id="2_u2pew"]
+
+[node name="Searcher" type="Node2D" unique_id=912260588]
+scale = Vector2(0.245, 0.245)
+script = ExtResource("1_083ib")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1026879660]
+texture = ExtResource("2_u2pew")
+
+[node name="WalkTimer" type="Timer" parent="." unique_id=1566212875]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="DumbTimer" type="Timer" parent="." unique_id=1631130591]
+wait_time = 0.2
+one_shot = true

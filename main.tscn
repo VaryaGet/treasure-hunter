@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://co5muft8bq5gy" path="res://tools/metalDetector/metal_detector.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cxmbgpq8qgu3j" path="res://UI/background/cloud.png" id="6_vivmo"]
 [ext_resource type="Texture2D" uid="uid://eae6nm70dg4o" path="res://UI/background/board.png" id="7_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://djjssbrfs7qt8" path="res://helpers/searcher/searcher.tscn" id="14_w48qg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vivmo"]
 shader = ExtResource("4_w48qg")
@@ -68,12 +69,12 @@ metadata/_edit_group_ = true
 [node name="Area" type="CollisionShape2D" parent="Common/PlayArea" unique_id=1462449504]
 shape = SubResource("RectangleShape2D_272bh")
 
-[node name="TreasureSpawner" type="Node" parent="." unique_id=991498209 node_paths=PackedStringArray("ScoreLabel", "PlayArea", "MetalDetector")]
+[node name="TreasureSpawner" type="Node" parent="Common" unique_id=991498209 node_paths=PackedStringArray("ScoreLabel", "PlayArea", "MetalDetector")]
 script = ExtResource("2_0xm2m")
 Treasure = ExtResource("4_lquwl")
-ScoreLabel = NodePath("../Score")
-PlayArea = NodePath("../Common/PlayArea")
-MetalDetector = NodePath("../MetalDetector")
+ScoreLabel = NodePath("../../Score")
+PlayArea = NodePath("../PlayArea")
+MetalDetector = NodePath("../../MetalDetector")
 
 [node name="MetalDetector" parent="." unique_id=1072696692 instance=ExtResource("6_7mycd")]
 position = Vector2(334, 256)
@@ -83,3 +84,6 @@ offset_right = 52.0
 offset_bottom = 23.0
 text = "Score :"
 script = ExtResource("5_lquwl")
+
+[node name="Searcher" parent="." unique_id=912260588 instance=ExtResource("14_w48qg")]
+position = Vector2(112, 206)
