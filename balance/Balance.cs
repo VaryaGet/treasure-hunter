@@ -24,7 +24,18 @@ public class Balance : IBalance
     {
         try
         {
-            return this.Balanced(type, level) != null;
+            if (this.Balanced(type, level) != null)
+            {
+                if (this.Balanced(type, level).Cost !=0)
+                {
+                    return true;
+                }
+                if (level == 0 || level == 1)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         catch (Exception exception)
         {

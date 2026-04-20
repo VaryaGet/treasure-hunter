@@ -46,10 +46,17 @@ public partial class Btn : StaticBody2D
 
 	public override void _Process(double delta)
 	{
-		this.enabled = (float)this.balance.Balanced(
-			this.type,
-			this.state.currentLevel(this.type) + 1
-		).Cost <= this.score.score;
+		if (!this.balance.Checked(this.type, this.state.currentLevel(this.type) + 1))
+		{
+			this.enabled = false;
+		}
+		else
+		{
+			this.enabled = (float)this.balance.Balanced(
+				this.type,
+				this.state.currentLevel(this.type) + 1
+			).Cost <= this.score.score;
+		}
 	}
 
 	private void MyInputEvent(Node viewport, InputEvent @event, long shapeIdx)
