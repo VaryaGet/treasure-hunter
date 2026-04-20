@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dkp4xnhyepfbv"]
 
 [ext_resource type="Script" uid="uid://c6l6c7mmsu432" path="res://treasure/Treasure.cs" id="1_rvv4y"]
-[ext_resource type="Shader" uid="uid://bdtj38ncsik0j" path="res://treasure/label.gdshader" id="2_ys2ic"]
-[ext_resource type="Shader" uid="uid://b4dtcqy70hkki" path="res://treasure/fade.gdshader" id="3_y7oq2"]
+[ext_resource type="Shader" path="res://treasure/label.gdshader" id="2_ys2ic"]
+[ext_resource type="Shader" path="res://treasure/fade.gdshader" id="3_y7oq2"]
 [ext_resource type="Texture2D" uid="uid://d1l2phhyqq14u" path="res://treasure/cross.png" id="4_a3u86"]
 [ext_resource type="Shader" uid="uid://djcbkkltby5bj" path="res://treasure/coin/coin.gdshader" id="4_ys2ic"]
 [ext_resource type="Texture2D" uid="uid://bqfcas82grj5c" path="res://treasure/grave.png" id="5_uh85m"]
@@ -221,7 +221,7 @@ script = ExtResource("6_uh85m")
 shape = SubResource("CircleShape2D_12f8a")
 
 [node name="FindTimer" type="Timer" parent="TreasureBody" unique_id=955656704]
-wait_time = 0.2
+wait_time = 0.05
 one_shot = true
 
 [node name="DieTimer" type="Timer" parent="." unique_id=2129620504]
