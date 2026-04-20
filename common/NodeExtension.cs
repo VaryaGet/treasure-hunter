@@ -60,6 +60,7 @@ public static class NodeExtension
             }
         }
 
-        return value.ToString(CultureInfo.InvariantCulture);
+        var roundedValue = Mathf.Ceil((float)value);
+        return roundedValue.ToString(CultureInfo.InvariantCulture);
     }
 }
