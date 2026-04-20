@@ -4,7 +4,8 @@ using System.Linq;
 
 public partial class Digger : Node2D
 {
-    [Export] public int Speed = 40;
+    [Export] public float Speed = 40;
+    [Export] public float SpeedMult = 1;
     [Export] public int Damage = 6;
     public Timer DumbTimer { get; private set; }
 
@@ -30,7 +31,7 @@ public partial class Digger : Node2D
             if (_target != null)
             {
                 var direction = (_target.GlobalPosition - GlobalPosition).Normalized();
-                GlobalPosition += direction * Speed * (float)delta;
+                GlobalPosition += direction * Speed * SpeedMult * (float)delta;
 
                 if (GlobalPosition.DistanceTo(_target.GlobalPosition) < 5f)
                 {

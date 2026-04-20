@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://coqvy1e3h241q" path="res://helpers/digger/Digger.cs" id="1_8m3pw"]
 [ext_resource type="Texture2D" uid="uid://c2nni77t1eri5" path="res://icon.svg" id="1_gxv7v"]
 
-[node name="Digger" type="Node2D" unique_id=29054709]
+[node name="Digger" type="Node2D" unique_id=29054709 groups=["digger"]]
 modulate = Color(1, 0.6392157, 1, 1)
 z_index = 1
 scale = Vector2(0.425, 0.425)

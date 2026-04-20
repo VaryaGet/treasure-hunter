@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bqgvsw32ix5hp" path="res://helpers/searcher/Searcher.cs" id="1_083ib"]
 [ext_resource type="Texture2D" uid="uid://c2nni77t1eri5" path="res://icon.svg" id="2_u2pew"]
 
-[node name="Searcher" type="Node2D" unique_id=912260588]
+[node name="Searcher" type="Node2D" unique_id=912260588 groups=["searcher"]]
 z_index = 1
 scale = Vector2(0.245, 0.245)
 script = ExtResource("1_083ib")

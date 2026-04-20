@@ -1,15 +1,15 @@
 ﻿using System;
+using Godot;
 using TreasureHunter.balance;
 
-namespace TreasureHunter.helpers.digger;
+namespace TreasureHunter.helpers.searcher;
 
-public class DiggerHolder
+public class SearcherHolder
 {
     public int Quantity { get; private set; }
-    public float DigDelay { get; private set; }
-    public float Speed { get; private set; }
+    public float SearchDelay { get; private set; }
 
-    public DiggerHolder(StateGd state)
+    public SearcherHolder(StateGd state)
     {
         FillStates(state);
     }
@@ -26,14 +26,11 @@ public class DiggerHolder
     {
         switch (upgradeType)
         {
-            case UpgradeType.DIGGER_QUANTITY:
+            case UpgradeType.SEARCHER_QUANTITY:
                 Quantity = (int)value;
                 return false;
-            case UpgradeType.DIGGER_SHOVEL:
-                DigDelay = value;
-                return true;
-            case UpgradeType.DIGGER_RUN:
-                Speed = value;
+            case UpgradeType.SEARCHER_SEARCH:
+                SearchDelay = value;
                 return true;
             default:
                 return false;

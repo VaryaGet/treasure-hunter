@@ -59,7 +59,7 @@ public partial class Treasure : Node2D
 
     private void OnTreasureClicked(Node viewport, InputEvent @event, long shapeIdx)
     {
-        if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
+        if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true } && TreasureBody.IsFound)
         {
             OnTreasureHit(this.GetPlayer().Damage);
         }

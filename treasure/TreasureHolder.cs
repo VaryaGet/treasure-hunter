@@ -10,6 +10,7 @@ public class TreasureHolder
 {
     private List<TreasureDto> _treasuresDto;
     private float spawnChance = 0.5f;
+    private float searcherSpawnChance = 0.5f;
     private int tier = 3;
 
     public TreasureHolder(StateGd state)
@@ -47,12 +48,13 @@ public class TreasureHolder
         InitList();
         foreach (var st in state.state.current())
         {
-            UpdateStates(st.Type, state.balance.Balanced(st.Type, st.Level).Value);
+            UpdateStates(st.Type, (float)state.balance.Balanced(st.Type, st.Level).Value);
         }
     }
 
-    public TreasureDto GetRandomTreasure()
+    public TreasureDto GetRandomTreasure(bool isForPlayer = false)
     {
+        var targetChance = isForPlayer ? spawnChance : searcherSpawnChance;
         if (tier == 1)
         {
             return _treasuresDto[0];
@@ -66,9 +68,9 @@ public class TreasureHolder
 
         switch (tier)
         {
-            case 2 when chance <= spawnChance:
+            case 2 when chance <= targetChance:
                 return _treasuresDto[1];
-            case 3 when chance <= spawnChance:
+            case 3 when chance <= targetChance:
                 return _treasuresDto[2];
             case 3:
             {
@@ -85,25 +87,30 @@ public class TreasureHolder
         return _treasuresDto[0];
     }
 
-    public void UpdateStates(UpgradeType upgradeType, decimal value)
+    public bool UpdateStates(UpgradeType upgradeType, float value)
     {
         switch (upgradeType)
         {
             case UpgradeType.TREASURE_BRONSE:
-                _treasuresDto[0].Income = (float)value;
-                break;
+                _treasuresDto[0].Income = value;
+                return true;
             case UpgradeType.TREASURE_SILVER:
-                _treasuresDto[1].Income = (float)value;
-                break;
+                _treasuresDto[1].Income = value;
+                return true;
             case UpgradeType.TREASURE_GOLD:
-                _treasuresDto[2].Income = (float)value;
-                break;
+                _treasuresDto[2].Income = value;
+                return true;
             case UpgradeType.TREASURE_TIER:
                 tier = (int)value;
-                break;
+                return true;
             case UpgradeType.QUALITY:
-                spawnChance = (float)value;
-                break;
+                spawnChance = value;
+                return true;
+            case UpgradeType.SEARCHER_QUALITY:
+                searcherSpawnChance = value;
+                return true;
+            default:
+                return false;
         }
     }
 

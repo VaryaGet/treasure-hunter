@@ -15,20 +15,20 @@ public partial class TreasureSpawner : Node
 
     public override void _Ready()
     {
-        this.GetStateGd().Ready += Ready;
+        this.GetStateGd().Ready += OnReady;
         SetProcess(false);
         //todo handle event and reset
     }
 
-    private void Ready()
+    private void OnReady()
     {
         _treasureHolder = new TreasureHolder(this.GetStateGd());
         SetProcess(true);
     }
 
-    private void UpdateTreasure(BState state, BValue value)
+    private void UpdateTreasure(UpgradeType type, int level, float value, float cost)
     {
-        _treasureHolder.UpdateStates(state.Type, value.Value);
+        _treasureHolder.UpdateStates(type, value);
     }
 
     public override void _Process(double delta)
@@ -52,7 +52,7 @@ public partial class TreasureSpawner : Node
             AddChild(o);
             o.Dead += ScoreLabel.AddScore;
 
-            var type = _treasureHolder.GetRandomTreasure();
+            var type = _treasureHolder.GetRandomTreasure(isForPlayer);
             o.CurrAnimation = type.Id;
             o.Money = type.Income;
             if (isFound)
