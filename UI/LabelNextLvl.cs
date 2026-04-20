@@ -18,16 +18,14 @@ public partial class LabelNextLvl : Label
 
 	private void UpdateText(UpgradeType type, int level, float value, float cost)
 	{
-		if (!parent.balance.Checked(type, level + 1))
+		int levelNext = level + 1;
+		if (!parent.balance.Checked(type, levelNext))
 		{
-			Text = "MAX";
+			Text = "lvl" + level;
 		}
 		else
 		{
-			Text = parent.balance.Balanced(
-				type,
-				level + 1
-			).Cost.ToString(CultureInfo.InvariantCulture);
+			Text = "lvl" + level + "->" + levelNext;
 		}
 	}
 }
