@@ -41,6 +41,7 @@ public partial class Btn : StaticBody2D
 		this.score = this.GetScore();
 		this.enabled = false;
 		GetNode<LabelNextCost>("NextCost").init();
+		GetNode<LabelNextLvl>("NextLvl").init();
 	}
 
 	public override void _Process(double delta)
