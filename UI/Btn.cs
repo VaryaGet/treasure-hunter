@@ -3,7 +3,7 @@ using System;
 using TreasureHunter.balance;
 using TreasureHunter.save;
 
-public partial class Button : StaticBody2D
+public partial class Btn : StaticBody2D
 {
 	[Signal]
 	public delegate void UpgradedEventHandler(UpgradeType type, int level, float value, float cost);
