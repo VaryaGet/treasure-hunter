@@ -19,6 +19,10 @@ public partial class Btn : StaticBody2D
 
     private Sprite2D _sprite;
 
+    private Tween _clickTween;
+    private Vector2 _originalScale;
+    private Color _originalModulate;
+
     private Dictionary<UpgradeType, string> upgrades = new()
     {
         { UpgradeType.DIGGER_QUANTITY, "Diggers" },
@@ -46,18 +50,11 @@ public partial class Btn : StaticBody2D
         GetNode<LabelNextLvl>("Labels/NextLvl").init();
 
         _sprite = GetNode<Sprite2D>("Sprite");
+        _originalScale = _sprite.Scale;
+        _originalModulate = _sprite.Modulate;
 
-        MouseEntered += () =>
-        {
-            _sprite.Modulate = new Color(1.2f, 1.2f, 0.8f);
-            _sprite.Scale = new Vector2(1.05f, 1.05f);
-        };
-
-        MouseExited += () =>
-        {
-            _sprite.Modulate = Colors.White;
-            _sprite.Scale = Vector2.One;
-        };
+        MouseEntered += SHovered;
+        MouseExited += SNotHovered;
     }
 
     public override void _Process(double delta)
@@ -73,13 +70,15 @@ public partial class Btn : StaticBody2D
                 state.currentLevel(type) + 1
             ).Cost <= score.score;
         }
+
+        UpdateSpriteColor();
     }
 
     private void MyInputEvent(Node viewport, InputEvent @event, long shapeIdx)
     {
         if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true } && enabled == true)
         {
-            GD.Print(123);
+            AnimateClick();
             var nextLevel = state.currentLevel(type) + 1;
             if (balance.Checked(type, nextLevel))
             {
@@ -100,5 +99,65 @@ public partial class Btn : StaticBody2D
     public string Named()
     {
         return upgrades[type];
+    }
+
+    private void SHovered()
+    {
+        if (enabled)
+        {
+            _sprite.Modulate = new Color(1.2f, 1.2f, 0.8f);
+            _sprite.Scale = new Vector2(1.05f, 1.05f);
+        }
+    }
+
+    private void SNotHovered()
+    {
+        if (enabled)
+        {
+            _sprite.Modulate = Colors.White;
+        }
+        else
+        {
+            _sprite.Modulate = new Color(0.7f, 0.7f, 0.7f);
+        }
+
+        _sprite.Scale = Vector2.One;
+    }
+
+    private void UpdateSpriteColor()
+    {
+        if (!enabled)
+        {
+            // Делаем спрайт сереньким
+            _sprite.Modulate = new Color(0.7f, 0.7f, 0.7f);
+        }
+        else if (_sprite.Modulate != Colors.White && _sprite.Modulate.R == 0.7f)
+        {
+            // Возвращаем белый цвет, если кнопка снова стала доступна
+            _sprite.Modulate = Colors.White;
+        }
+    }
+
+    private void AnimateClick()
+    {
+        // Останавливаем предыдущую анимацию, если есть
+        _clickTween?.Kill();
+
+        // Создаем новый Tween
+        _clickTween = CreateTween();
+
+        // Анимация сжатия и поворота (качание)
+        _clickTween.SetTrans(Tween.TransitionType.Back);
+        _clickTween.SetEase(Tween.EaseType.Out);
+
+        // Сжимаем спрайт
+        _clickTween.TweenProperty(_sprite, "scale", new Vector2(0.95f, 0.95f), 0.08f);
+
+        // Небольшой наклон
+        _clickTween.Parallel().TweenProperty(_sprite, "rotation", Mathf.DegToRad(5f), 0.08f);
+
+        // Возвращаем в исходное состояние с эффектом "пружинки"
+        _clickTween.TweenProperty(_sprite, "scale", _originalScale, 0.12f);
+        _clickTween.Parallel().TweenProperty(_sprite, "rotation", 0f, 0.12f);
     }
 }

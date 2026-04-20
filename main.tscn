@@ -119,52 +119,53 @@ offset_top = 4.0
 offset_right = 59.0
 offset_bottom = 27.0
 theme = ExtResource("19_ryguw")
+theme_override_font_sizes/font_size = 10
 text = "Score :"
 script = ExtResource("5_lquwl")
 
 [node name="Buttons" type="Node2D" parent="." unique_id=204881837]
 
 [node name="DiggerQuantity" parent="Buttons" unique_id=1990019813 instance=ExtResource("20_getpj")]
-position = Vector2(520, 93)
+position = Vector2(520, 95)
 
 [node name="Digger power" parent="Buttons" unique_id=811072356 instance=ExtResource("20_getpj")]
-position = Vector2(595, 92)
+position = Vector2(590, 95)
 type = 1
 
 [node name="Digger speed" parent="Buttons" unique_id=198018620 instance=ExtResource("20_getpj")]
-position = Vector2(520, 152)
+position = Vector2(520, 150)
 type = 2
 
 [node name="Bronze value" parent="Buttons" unique_id=1511077395 instance=ExtResource("20_getpj")]
-position = Vector2(589, 270)
+position = Vector2(590, 260)
 type = 3
 
 [node name="Silver value" parent="Buttons" unique_id=464067612 instance=ExtResource("20_getpj")]
-position = Vector2(517, 322)
+position = Vector2(520, 315)
 type = 4
 
 [node name="Gold value" parent="Buttons" unique_id=1360743492 instance=ExtResource("20_getpj")]
-position = Vector2(587, 323)
+position = Vector2(590, 315)
 type = 5
 
 [node name="Searchers" parent="Buttons" unique_id=1177924474 instance=ExtResource("20_getpj")]
-position = Vector2(591, 152)
+position = Vector2(590, 150)
 type = 6
 
 [node name="Searcher speed" parent="Buttons" unique_id=2139374261 instance=ExtResource("20_getpj")]
-position = Vector2(517, 210)
+position = Vector2(520, 205)
 type = 7
 
 [node name="Searcher skill" parent="Buttons" unique_id=2026194342 instance=ExtResource("20_getpj")]
-position = Vector2(593, 211)
+position = Vector2(590, 205)
 type = 8
 
 [node name="Coin tier" parent="Buttons" unique_id=208855536 instance=ExtResource("20_getpj")]
-position = Vector2(517, 269)
+position = Vector2(520, 260)
 type = 9
 
 [node name="Detector quality" parent="Buttons" unique_id=1332111576 instance=ExtResource("20_getpj")]
-position = Vector2(519, 39)
+position = Vector2(520, 40)
 type = 10
 
 [node name="Music" parent="." unique_id=1893008429 instance=ExtResource("21_getpj")]

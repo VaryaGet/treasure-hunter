@@ -21,11 +21,11 @@ public partial class LabelNextLvl : Label
         var levelNext = level + 1;
         if (!parent.balance.Checked(type, levelNext))
         {
-            Text = "lvl" + level;
+            Text = "lvl" + " " + level;
         }
         else
         {
-            Text = "lvl" + level + "->" + levelNext;
+            Text = "lvl" + " " + level + "->" + levelNext;
         }
     }
 }
