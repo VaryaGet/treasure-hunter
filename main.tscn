@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://nkgctlygk64t"]
 
 [ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="2_0xm2m"]
-[ext_resource type="Shader" path="res://UI/background/sea.gdshader" id="2_2cqfq"]
+[ext_resource type="Shader" uid="uid://mmqtkki77536" path="res://UI/background/sea.gdshader" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dqiu516ythlny" path="res://UI/background/background.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://tools/shovel/Shovel.cs" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="4_lquwl"]
@@ -127,50 +127,15 @@ offset_bottom = 23.0
 text = "Score :"
 script = ExtResource("5_lquwl")
 
-[node name="Ui" type="Control" parent="." unique_id=1600824417]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -170.0
-offset_bottom = 360.0
-grow_horizontal = 0
-
-[node name="Control2" type="Control" parent="Ui" unique_id=444393543]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 85.0
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="Ui/Control2" unique_id=942599239]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.5
-offset_top = 20.0
-offset_right = 45.5
-offset_bottom = 81.0
-grow_horizontal = 2
-icon = ExtResource("19_getpj")
-
-[node name="Control" type="Control" parent="Ui" unique_id=836911771]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_right = 85.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="StateGodot" type="Node2D" parent="." unique_id=441059234]
 script = ExtResource("20_82xsv")
 
 [node name="Buttons" type="Node2D" parent="." unique_id=204881837]
 
 [node name="DiggerQuantity" type="StaticBody2D" parent="Buttons" unique_id=481948512]
+collision_layer = 4
+collision_mask = 0
+input_pickable = true
 script = ExtResource("22_d13ii")
 
 [node name="Sprite2D" type="Sprite2D" parent="Buttons/DiggerQuantity" unique_id=1880746949]
@@ -182,6 +147,9 @@ position = Vector2(521.5, 111)
 shape = SubResource("RectangleShape2D_d13ii")
 
 [node name="DiggerShovel" type="StaticBody2D" parent="Buttons" unique_id=932858630]
+collision_layer = 4
+collision_mask = 0
+input_pickable = true
 script = ExtResource("22_d13ii")
 type = 1
 

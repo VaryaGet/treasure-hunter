@@ -32,6 +32,7 @@ project/assembly_name="TreasureHunter"
 
 2d_physics/layer_1="treasure"
 2d_physics/layer_2="tool"
+2d_physics/layer_3="ui"
 
 [physics]
 
