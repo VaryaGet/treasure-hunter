@@ -46,7 +46,14 @@ public class StateCsv : IState
         if (!File.Exists(path))
         {
             states = Enum.GetValues<UpgradeType>()
-                .Select(type => new BState(1, type))
+                .Select(type =>
+                {
+                    // if (UpgradeType.DIGGER_QUANTITY == type || UpgradeType.SEARCHER_QUALITY == type)
+                    // {
+                    //     return new BState(0, type);
+                    // }
+                    return new BState(1, type);
+                })
                 .ToList();
         }
         else

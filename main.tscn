@@ -93,6 +93,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 script = ExtResource("2_0xm2m")
 Treasure = ExtResource("4_lquwl")
+MaxCount = 12
 ScoreLabel = NodePath("../../../Score")
 PlayArea = NodePath("../../PlayArea")
 MetalDetector = NodePath("../../../MetalDetector")
@@ -100,22 +101,12 @@ MetalDetector = NodePath("../../../MetalDetector")
 [node name="SearcherSpawner" type="Node2D" parent="Common/Holder" unique_id=199261734]
 y_sort_enabled = true
 script = ExtResource("13_cegan")
-
-[node name="Searcher" parent="Common/Holder/SearcherSpawner" unique_id=912260588 instance=ExtResource("14_w48qg")]
-position = Vector2(136, 242)
-
-[node name="Searcher2" parent="Common/Holder/SearcherSpawner" unique_id=679433863 instance=ExtResource("14_w48qg")]
-position = Vector2(136, 242)
+Searcher = ExtResource("14_w48qg")
 
 [node name="DiggerSpawner" type="Node2D" parent="Common/Holder" unique_id=480349043]
 y_sort_enabled = true
 script = ExtResource("15_82xsv")
-
-[node name="Digger" parent="Common/Holder/DiggerSpawner" unique_id=29054709 instance=ExtResource("13_vivmo")]
-position = Vector2(46, 314)
-
-[node name="Digger2" parent="Common/Holder/DiggerSpawner" unique_id=1167651860 instance=ExtResource("13_vivmo")]
-position = Vector2(140, 314)
+Digger = ExtResource("13_vivmo")
 
 [node name="MetalDetector" parent="." unique_id=1072696692 instance=ExtResource("6_7mycd")]
 position = Vector2(258, 234)
