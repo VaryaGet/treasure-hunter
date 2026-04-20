@@ -7,19 +7,19 @@ using FileAccess = Godot.FileAccess;
 
 public partial class StateGd : Node2D
 {
-    public IState state;
-    public IBalance balance;
+	public IState state;
+	public IBalance balance;
 
-    public override void _Ready()
-    {
-        var text = FileAccess.GetFileAsString("res://resources/LD59.csv");
-        File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/balance.csv", text);
-        balance = new Balance(AppDomain.CurrentDomain.BaseDirectory + "/balance.csv");
-        state = new StateCsv(AppDomain.CurrentDomain.BaseDirectory + "/saves");
-    }
+	public override void _Ready()
+	{
+		var text = FileAccess.GetFileAsString("res://resources/LD59.csv");
+		File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/balance.csv", text);
+		balance = new Balance(AppDomain.CurrentDomain.BaseDirectory + "/balance.csv");
+		state = new StateCsv(AppDomain.CurrentDomain.BaseDirectory + "/saves");
+	}
 
-    public override void _Process(double delta)
-    {
-        // GD.Print(state.currentLevel(UpgradeType.DIGGER_QUANTITY));
-    }
+	public override void _Process(double delta)
+	{
+		// GD.Print(state.currentLevel(UpgradeType.DIGGER_QUANTITY));
+	}
 }

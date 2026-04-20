@@ -6,89 +6,93 @@ using TreasureHunter.treasure;
 
 public partial class TreasureSpawner : Node
 {
-    [Export] public PackedScene Treasure;
-    [Export] public int MaxCount = 4;
-    [Export] public Score ScoreLabel;
-    [Export] public PlayArea PlayArea;
-    [Export] public MetalDetector MetalDetector;
+	[Export] public PackedScene Treasure;
+	[Export] public int MaxCount = 4;
+	[Export] public Score ScoreLabel;
+	[Export] public PlayArea PlayArea;
+	[Export] public MetalDetector MetalDetector;
 
-    private TreasureHolder _treasureHolder;
+	private TreasureHolder _treasureHolder;
 
-    public override void _Ready()
-    {
-        _treasureHolder = new TreasureHolder(this.GetStateGd());
-        var btns = GetTree().GetNodesInGroup(Groups.UpgradesBtns).OfType<Btn>();
-        foreach (var btn in btns)
-        {
-            btn.Upgraded += UpdateTreasure;
-        }
-    }
+	public override void _Ready()
+	{
+		_treasureHolder = new TreasureHolder(this.GetStateGd());
+		var btns = GetTree().GetNodesInGroup(Groups.UpgradesBtns).OfType<Btn>();
+		foreach (var btn in btns)
+		{
+			btn.Upgraded += UpdateTreasure;
+		}
+	}
 
-    private void UpdateTreasure(UpgradeType type, int level, float value, float cost)
-    {
-        if (_treasureHolder.UpdateStates(type, value))
-        {
-            var treasures = GetTree().GetNodesInGroup(Groups.PlayersTreasure)
-                .OfType<Treasure>()
-                .Where(t => !t._isDying);
-            foreach (var treasure in treasures)
-            {
-                var t = _treasureHolder.GetRandomTreasure();
-                treasure.Money = t.Income;
-                treasure.CurrAnimation = t.Id;
-            }
-        }
-    }
+	private void UpdateTreasure(UpgradeType type, int level, float value, float cost)
+	{
+		if (_treasureHolder.UpdateStates(type, value))
+		{
+			var treasures = GetTree().GetNodesInGroup(Groups.PlayersTreasure)
+				.OfType<Treasure>()
+				.Where(t => !t._isDying);
+			foreach (var treasure in treasures)
+			{
+				var t = _treasureHolder.GetRandomTreasure();
+				treasure.Money = t.Income;
+				treasure.CurrAnimation = t.Id;
+			}
+		}
+		if (type == UpgradeType.QUALITY)
+		{
+			this.MaxCount += 5;
+		}
+	}
 
-    public override void _Process(double delta)
-    {
-        var count = GetTree().GetNodeCountInGroup(Groups.PlayersTreasure);
-        if (count < MaxCount)
-        {
-            for (var i = 0; i < MaxCount - count; i++)
-            {
-                AddTreasure(ChoosePosition(), false, true);
-            }
-        }
-    }
+	public override void _Process(double delta)
+	{
+		var count = GetTree().GetNodeCountInGroup(Groups.PlayersTreasure);
+		if (count < MaxCount)
+		{
+			for (var i = 0; i < MaxCount - count; i++)
+			{
+				AddTreasure(ChoosePosition(), false, true);
+			}
+		}
+	}
 
-    public void AddTreasure(Vector2 position, bool isFound, bool isForPlayer = false)
-    {
-        if (position != Vector2.Zero)
-        {
-            var o = Treasure.Instantiate<Treasure>();
-            o.GlobalPosition = position;
-            AddChild(o);
-            o.Dead += ScoreLabel.AddScore;
+	public void AddTreasure(Vector2 position, bool isFound, bool isForPlayer = false)
+	{
+		if (position != Vector2.Zero)
+		{
+			var o = Treasure.Instantiate<Treasure>();
+			o.GlobalPosition = position;
+			AddChild(o);
+			o.Dead += ScoreLabel.AddScore;
 
-            var type = _treasureHolder.GetRandomTreasure(isForPlayer);
-            o.CurrAnimation = type.Id;
-            o.Money = type.Income;
-            if (isFound)
-            {
-                o.TreasureBody.FoundTreasure();
-            }
+			var type = _treasureHolder.GetRandomTreasure(isForPlayer);
+			o.CurrAnimation = type.Id;
+			o.Money = type.Income;
+			if (isFound)
+			{
+				o.TreasureBody.FoundTreasure();
+			}
 
-            if (isForPlayer)
-            {
-                o.AddToGroup(Groups.PlayersTreasure);
-            }
-        }
-    }
+			if (isForPlayer)
+			{
+				o.AddToGroup(Groups.PlayersTreasure);
+			}
+		}
+	}
 
-    private Vector2 ChoosePosition()
-    {
-        var result = Vector2.Zero;
-        for (var i = 0; i < 3; i++)
-        {
-            var pos = PlayArea.GetRandomPosition();
-            if (!MetalDetector.IsInZone(pos))
-            {
-                result = pos;
-                break;
-            }
-        }
+	private Vector2 ChoosePosition()
+	{
+		var result = Vector2.Zero;
+		for (var i = 0; i < 3; i++)
+		{
+			var pos = PlayArea.GetRandomPosition();
+			if (!MetalDetector.IsInZone(pos))
+			{
+				result = pos;
+				break;
+			}
+		}
 
-        return result;
-    }
+		return result;
+	}
 }
