@@ -8,7 +8,7 @@ public partial class Score : Label
 
     public override void _Ready()
     {
-        Text = "Score: " + score.ToString("N0");
+        Text = "Score: " + NodeExtension.FormatFloat(score);
     }
 
     public void AddScore(float value)
