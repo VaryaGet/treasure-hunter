@@ -36,7 +36,6 @@ public class BCsv
 				value = ParseDecimal(type == UpgradeType.TREASURE_TIER ? parts[col - 1] : parts[col]);
 				var cost = ParseDecimal(parts[col + 1]);
 
-				if (value > 0 || cost > 0)
 					result[type][level] = new BValue(value, cost);
 			}
 		}
