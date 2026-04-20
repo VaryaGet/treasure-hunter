@@ -24,17 +24,6 @@ public partial class TreasureSpawner : Node
         }
     }
 
-    private void OnReady()
-    {
-        _treasureHolder = new TreasureHolder(this.GetStateGd());
-        SetProcess(true);
-        var btns = GetTree().GetNodesInGroup(Groups.UpgradesBtns).OfType<Btn>();
-        foreach (var btn in btns)
-        {
-            btn.Upgraded += UpdateTreasure;
-        }
-    }
-
     private void UpdateTreasure(UpgradeType type, int level, float value, float cost)
     {
         _treasureHolder.UpdateStates(type, value);

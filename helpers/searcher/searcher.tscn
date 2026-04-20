@@ -1,21 +1,120 @@
 [gd_scene format=3 uid="uid://djjssbrfs7qt8"]
 
 [ext_resource type="Script" uid="uid://bqgvsw32ix5hp" path="res://helpers/searcher/Searcher.cs" id="1_083ib"]
-[ext_resource type="Texture2D" uid="uid://c2nni77t1eri5" path="res://icon.svg" id="2_u2pew"]
+[ext_resource type="Texture2D" uid="uid://d4m7kqr8584mn" path="res://helpers/searcher/crab_1.png" id="2_stmx8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7fys"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(0, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbnub"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(39, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkmhb"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(78, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsxpi"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(117, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmi2r"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(156, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_083ib"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(117, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2pew"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(156, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stmx8"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(195, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5oj0q"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(0, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e60r"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(39, 0, 39, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26qby"]
+atlas = ExtResource("2_stmx8")
+region = Rect2(78, 0, 39, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5oj0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7fys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbnub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkmhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsxpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmi2r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_083ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2pew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stmx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2pew")
+}],
+"loop": true,
+"name": &"dumb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5oj0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e60r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26qby")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Searcher" type="Node2D" unique_id=912260588 groups=["searcher"]]
 z_index = 1
-scale = Vector2(0.245, 0.245)
 script = ExtResource("1_083ib")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1026879660]
-texture = ExtResource("2_u2pew")
-region_rect = Rect2(0, 47.666687, 74, 80.33331)
+[node name="Crab" type="AnimatedSprite2D" parent="." unique_id=761192056]
+sprite_frames = SubResource("SpriteFrames_5oj0q")
+animation = &"walk"
+frame_progress = 0.995421
 
 [node name="WalkTimer" type="Timer" parent="." unique_id=1566212875]
+wait_time = 2.0
 one_shot = true
 autostart = true
 
 [node name="DumbTimer" type="Timer" parent="." unique_id=1631130591]
-wait_time = 0.2
+wait_time = 2.0
 one_shot = true

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://nkgctlygk64t"]
 
 [ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="2_0xm2m"]
-[ext_resource type="Shader" path="res://UI/background/sea.gdshader" id="2_2cqfq"]
+[ext_resource type="Shader" uid="uid://mmqtkki77536" path="res://UI/background/sea.gdshader" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dqiu516ythlny" path="res://UI/background/background.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://tools/shovel/Shovel.cs" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="4_lquwl"]
@@ -93,7 +93,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 script = ExtResource("2_0xm2m")
 Treasure = ExtResource("4_lquwl")
-MaxCount = 12
+MaxCount = 24
 ScoreLabel = NodePath("../../../Score")
 PlayArea = NodePath("../../PlayArea")
 MetalDetector = NodePath("../../../MetalDetector")

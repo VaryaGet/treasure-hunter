@@ -187,7 +187,7 @@ horizontal_alignment = 1
 
 [node name="Grave" type="Sprite2D" parent="." unique_id=754841629]
 material = SubResource("ShaderMaterial_3q50f")
-position = Vector2(0, 3)
+position = Vector2(2, 0)
 texture = ExtResource("5_uh85m")
 
 [node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1580569450]
@@ -198,7 +198,6 @@ animation = &"2"
 frame_progress = 0.43512583
 
 [node name="Cross" type="Sprite2D" parent="." unique_id=584622012]
-position = Vector2(0, -2)
 texture = ExtResource("4_a3u86")
 
 [node name="TreasureBody" type="StaticBody2D" parent="." unique_id=1924810820 groups=["treasureCol"]]

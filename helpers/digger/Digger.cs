@@ -10,6 +10,7 @@ public partial class Digger : Node2D
     public Timer DumbTimer { get; private set; }
 
     private Treasure _target;
+    private AnimatedSprite2D _crabAnim;
 
     public override void _Ready()
     {
@@ -17,6 +18,8 @@ public partial class Digger : Node2D
         SelectNewTarget();
 
         DumbTimer.Timeout += OnDumbTimerTimeout;
+        _crabAnim = GetNode<AnimatedSprite2D>("Crab");
+        _crabAnim.Play("dumb");
     }
 
     public override void _Process(double delta)
@@ -37,6 +40,7 @@ public partial class Digger : Node2D
                 {
                     _target.Hit(Damage);
                     DumbTimer.Start();
+                    _crabAnim.Play("dumb");
                 }
             }
         }
@@ -45,6 +49,7 @@ public partial class Digger : Node2D
     private void OnDumbTimerTimeout()
     {
         SelectNewTarget();
+        _crabAnim.Play("walk");
     }
 
     private void SelectNewTarget()

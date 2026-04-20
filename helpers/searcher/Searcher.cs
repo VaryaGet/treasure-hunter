@@ -12,6 +12,8 @@ public partial class Searcher : Node2D
 
     private Vector2 _targetPoint;
 
+    private AnimatedSprite2D _crabAnim;
+
     public override void _Ready()
     {
         _playArea = this.GetPlayArea();
@@ -22,6 +24,9 @@ public partial class Searcher : Node2D
 
         DumbTimer.Timeout += OnDumbTimerTimeout;
         WalkTimer.Timeout += OnWalkTimerTimeout;
+
+        _crabAnim = GetNode<AnimatedSprite2D>("Crab");
+        _crabAnim.Play("walk");
     }
 
     public override void _Process(double delta)
@@ -43,11 +48,13 @@ public partial class Searcher : Node2D
         SpawnTreasure();
         SelectNewTarget();
         WalkTimer.Start();
+        _crabAnim.Play("walk");
     }
 
     private void OnWalkTimerTimeout()
     {
         DumbTimer.Start();
+        _crabAnim.Play("dumb");
     }
 
     private void SpawnTreasure()

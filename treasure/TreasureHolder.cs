@@ -102,13 +102,13 @@ public class TreasureHolder
                 return true;
             case UpgradeType.TREASURE_TIER:
                 tier = (int)value;
-                return true;
+                return false;
             case UpgradeType.QUALITY:
                 spawnChance = value;
-                return true;
+                return false;
             case UpgradeType.SEARCHER_QUALITY:
                 searcherSpawnChance = value;
-                return true;
+                return false;
             default:
                 return false;
         }
