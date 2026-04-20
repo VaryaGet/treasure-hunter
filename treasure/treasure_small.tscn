@@ -1,0 +1,215 @@
+[gd_scene format=3 uid="uid://bhub5o1r32o88"]
+
+[ext_resource type="Script" uid="uid://c6l6c7mmsu432" path="res://treasure/Treasure.cs" id="1_lwuw4"]
+[ext_resource type="Shader" uid="uid://bdtj38ncsik0j" path="res://treasure/label.gdshader" id="2_bkcgm"]
+[ext_resource type="Shader" uid="uid://b4dtcqy70hkki" path="res://treasure/fade.gdshader" id="3_vchtm"]
+[ext_resource type="Texture2D" uid="uid://c22qjq3r40mkv" path="res://treasure/grave_s.png" id="4_lwuw4"]
+[ext_resource type="Shader" uid="uid://djcbkkltby5bj" path="res://treasure/coin/coin.gdshader" id="5_y4idj"]
+[ext_resource type="Texture2D" uid="uid://cds5mquikkau6" path="res://treasure/coin/coins.png" id="6_d6xqq"]
+[ext_resource type="Texture2D" uid="uid://h2qq4e1cy2wq" path="res://treasure/cross_s.png" id="7_bkcgm"]
+[ext_resource type="Script" uid="uid://4cvbmlsmp7g8" path="res://treasure/TreasureBody.cs" id="8_26dig"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7oq2"]
+resource_local_to_scene = true
+shader = ExtResource("2_bkcgm")
+shader_parameter/alpha = 1.0
+shader_parameter/speed = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3q50f"]
+resource_local_to_scene = true
+shader = ExtResource("3_vchtm")
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uh85m"]
+resource_local_to_scene = true
+shader = ExtResource("5_y4idj")
+shader_parameter/t = 0.0
+shader_parameter/step = 10.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7oq2"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(0, 57, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q50f"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(19, 57, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxofl"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(38, 57, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvyx2"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(57, 57, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82tbq"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(0, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr67x"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(19, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx311"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(38, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njgaa"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(57, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cir1"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(0, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxh1r"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(19, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khfbh"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(38, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkt4h"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(57, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol5jy"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(0, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jri4m"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(19, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6667"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(38, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbk4m"]
+atlas = ExtResource("6_d6xqq")
+region = Rect2(57, 0, 19, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1u2g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7oq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q50f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxofl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvyx2")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82tbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr67x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx311")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njgaa")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cir1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxh1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khfbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkt4h")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol5jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jri4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6667")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbk4m")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_12f8a"]
+radius = 31.016125
+
+[node name="Treasure" type="Node2D" unique_id=753180507 groups=["treasure"]]
+script = ExtResource("1_lwuw4")
+Hp = 1
+
+[node name="Label" type="Label" parent="." unique_id=1683482826]
+material = SubResource("ShaderMaterial_y7oq2")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -28.0
+offset_right = 14.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "1"
+horizontal_alignment = 1
+
+[node name="Grave" type="Sprite2D" parent="." unique_id=754841629]
+material = SubResource("ShaderMaterial_3q50f")
+texture = ExtResource("4_lwuw4")
+
+[node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1580569450]
+z_index = 1
+material = SubResource("ShaderMaterial_uh85m")
+sprite_frames = SubResource("SpriteFrames_e1u2g")
+animation = &"2"
+frame_progress = 0.43512583
+
+[node name="Cross" type="Sprite2D" parent="." unique_id=584622012]
+texture = ExtResource("7_bkcgm")
+
+[node name="TreasureBody" type="StaticBody2D" parent="." unique_id=1924810820 groups=["treasureCol"]]
+collision_mask = 0
+input_pickable = true
+script = ExtResource("8_26dig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureBody" unique_id=2117578229]
+shape = SubResource("CircleShape2D_12f8a")
+
+[node name="FindTimer" type="Timer" parent="TreasureBody" unique_id=955656704]
+wait_time = 0.2
+one_shot = true
+
+[node name="DieTimer" type="Timer" parent="." unique_id=2129620504]
+wait_time = 2.0
