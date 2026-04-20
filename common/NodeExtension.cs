@@ -16,4 +16,9 @@ public static class NodeExtension
     {
         return node.GetNode<TreasureSpawner>("/root/Main/Common/Holder/TreasureSpawner");
     }
+
+    public static StateGd GetStateGd(this Node node)
+    {
+        return node.GetNode<StateGd>("/root/Main/StateGodot");
+    }
 }
