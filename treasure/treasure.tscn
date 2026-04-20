@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://dkp4xnhyepfbv"]
 
 [ext_resource type="Script" uid="uid://c6l6c7mmsu432" path="res://treasure/Treasure.cs" id="1_rvv4y"]
-[ext_resource type="Shader" path="res://treasure/label.gdshader" id="2_ys2ic"]
-[ext_resource type="Shader" path="res://treasure/fade.gdshader" id="3_y7oq2"]
+[ext_resource type="Shader" uid="uid://bdtj38ncsik0j" path="res://treasure/label.gdshader" id="2_ys2ic"]
+[ext_resource type="Shader" uid="uid://b4dtcqy70hkki" path="res://treasure/fade.gdshader" id="3_y7oq2"]
 [ext_resource type="Texture2D" uid="uid://d1l2phhyqq14u" path="res://treasure/cross.png" id="4_a3u86"]
 [ext_resource type="Shader" uid="uid://djcbkkltby5bj" path="res://treasure/coin/coin.gdshader" id="4_ys2ic"]
 [ext_resource type="Texture2D" uid="uid://bqfcas82grj5c" path="res://treasure/grave.png" id="5_uh85m"]
 [ext_resource type="Texture2D" uid="uid://cds5mquikkau6" path="res://treasure/coin/coins.png" id="5_ys2ic"]
 [ext_resource type="Script" uid="uid://4cvbmlsmp7g8" path="res://treasure/TreasureBody.cs" id="6_uh85m"]
 [ext_resource type="Texture2D" uid="uid://cgfkw4ywepb8l" path="res://tools/shovel/shovel.png" id="8_3q50f"]
+[ext_resource type="AudioStream" uid="uid://ccyk2t04l4xcc" path="res://audio/dig.wav" id="10_mxofl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3q50f"]
 resource_local_to_scene = true
@@ -226,3 +227,6 @@ one_shot = true
 
 [node name="DieTimer" type="Timer" parent="." unique_id=2129620504]
 wait_time = 2.0
+
+[node name="DigSound" type="AudioStreamPlayer" parent="." unique_id=2129388465]
+stream = ExtResource("10_mxofl")

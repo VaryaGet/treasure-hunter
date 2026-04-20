@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://5aggblnqoxq1"]
+
+[ext_resource type="Script" uid="uid://buoyxxdrwdyn6" path="res://audio/Music.cs" id="1_w5q55"]
+[ext_resource type="AudioStream" uid="uid://dklkg14ia3vfe" path="res://audio/intro.wav" id="2_lr66j"]
+[ext_resource type="AudioStream" uid="uid://cxp0or7oplrpy" path="res://audio/CRAB_LOOP_FINAL.wav" id="3_khlsn"]
+
+[node name="Music" type="Node" unique_id=1893008429]
+script = ExtResource("1_w5q55")
+
+[node name="IntroPlayer" type="AudioStreamPlayer" parent="." unique_id=705354351]
+stream = ExtResource("2_lr66j")
+bus = &"Music"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=330801822]
+stream = ExtResource("3_khlsn")
+bus = &"Music"

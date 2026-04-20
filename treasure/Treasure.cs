@@ -15,6 +15,7 @@ public partial class Treasure : Node2D
     private Sprite2D _shovel;
     private Sprite2D _grave;
     private AnimatedSprite2D _coin;
+    private AudioStreamPlayer _digSound;
     private Label _label;
     private Timer _dieTimer;
 
@@ -39,6 +40,8 @@ public partial class Treasure : Node2D
         _cross = GetNode<Sprite2D>("Cross");
         _shovel = GetNode<Sprite2D>("Shovel");
         _label = GetNode<Label>("Label");
+        _digSound = GetNode<AudioStreamPlayer>("DigSound");
+
         NewTreasure();
 
         _dieTimer = GetNode<Timer>("DieTimer");
@@ -123,6 +126,7 @@ public partial class Treasure : Node2D
         if (isPlayer)
         {
             _shovel.Show();
+            _digSound.Play();
         }
 
         _label.Text = Money.ToString();
