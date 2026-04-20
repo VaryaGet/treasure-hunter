@@ -3,7 +3,7 @@ using System;
 
 public partial class Score : Label
 {
-    public float score = 999999999999;
+    public float score = 0;
     public float Total = 0;
 
     public override void _Ready()
