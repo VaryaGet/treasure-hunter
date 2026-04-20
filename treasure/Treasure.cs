@@ -5,12 +5,14 @@ public partial class Treasure : Node2D
 {
     [Export] public int Hp = 6;
     [Export] public float Money = 2;
+    [Export] public Texture Shovel;
 
     public TreasureBody TreasureBody { get; private set; }
     public bool IsBusy { get; set; }
     public int CurrAnimation { get; set; }
 
     private Sprite2D _cross;
+    private Sprite2D _shovel;
     private Sprite2D _grave;
     private AnimatedSprite2D _coin;
     private Label _label;
@@ -20,7 +22,7 @@ public partial class Treasure : Node2D
     public delegate void DeadEventHandler(float money);
 
     private int _hp;
-    private bool _isDying = false;
+    public bool _isDying { get; private set; }
 
     [Signal]
     public delegate void TreasureHitEventHandler(int damage);
@@ -35,6 +37,7 @@ public partial class Treasure : Node2D
         _coin = GetNode<AnimatedSprite2D>("Coin");
         _grave = GetNode<Sprite2D>("Grave");
         _cross = GetNode<Sprite2D>("Cross");
+        _shovel = GetNode<Sprite2D>("Shovel");
         _label = GetNode<Label>("Label");
         NewTreasure();
 
@@ -48,24 +51,25 @@ public partial class Treasure : Node2D
         ((ShaderMaterial)_coin.Material).SetShaderParameter("t", _dieTimer.WaitTime - _dieTimer.TimeLeft);
 
         var val = Mathf.InverseLerp(0, _dieTimer.WaitTime, _dieTimer.TimeLeft);
+        ((ShaderMaterial)_shovel.Material).SetShaderParameter("alpha", val);
         ((ShaderMaterial)_label.Material).SetShaderParameter("alpha", val);
         ((ShaderMaterial)_grave.Material).SetShaderParameter("alpha", val);
     }
 
     public void Hit(int damage)
     {
-        OnTreasureHit(damage);
+        OnTreasureHit(damage, false);
     }
 
     private void OnTreasureClicked(Node viewport, InputEvent @event, long shapeIdx)
     {
         if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true } && TreasureBody.IsFound)
         {
-            OnTreasureHit(this.GetPlayer().Damage);
+            OnTreasureHit(this.GetPlayer().Damage, true);
         }
     }
 
-    private void OnTreasureHit(int damage)
+    private void OnTreasureHit(int damage, bool isPlayer)
     {
         if (!_isDying)
         {
@@ -76,7 +80,7 @@ public partial class Treasure : Node2D
             {
                 _isDying = true;
                 _dieTimer.Start();
-                CollectTreasure();
+                CollectTreasure(isPlayer);
                 SetProcess(_isDying);
                 EmitSignalDead(Money);
             }
@@ -89,6 +93,7 @@ public partial class Treasure : Node2D
         _grave.Hide();
         _cross.Hide();
         _label.Hide();
+        _shovel.Hide();
     }
 
     private void CrossTreasure()
@@ -97,6 +102,7 @@ public partial class Treasure : Node2D
         _grave.Hide();
         _cross.Show();
         _label.Hide();
+        _shovel.Hide();
         RemoveFromGroup(Groups.PlayersTreasure);
     }
 
@@ -106,14 +112,19 @@ public partial class Treasure : Node2D
         _grave.Show();
         _cross.Hide();
         _label.Hide();
+        _shovel.Hide();
     }
 
-    private void CollectTreasure()
+    private void CollectTreasure(bool isPlayer)
     {
         _coin.Show();
         _grave.Show();
         _cross.Hide();
         _label.Show();
+        if (isPlayer)
+        {
+            _shovel.Show();
+        }
 
         _label.Text = Money.ToString();
 

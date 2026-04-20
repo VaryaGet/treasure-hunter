@@ -26,7 +26,18 @@ public partial class TreasureSpawner : Node
 
     private void UpdateTreasure(UpgradeType type, int level, float value, float cost)
     {
-        _treasureHolder.UpdateStates(type, value);
+        if (_treasureHolder.UpdateStates(type, value))
+        {
+            var treasures = GetTree().GetNodesInGroup(Groups.PlayersTreasure)
+                .OfType<Treasure>()
+                .Where(t => !t._isDying);
+            foreach (var treasure in treasures)
+            {
+                var t = _treasureHolder.GetRandomTreasure();
+                treasure.Money = t.Income;
+                treasure.CurrAnimation = t.Id;
+            }
+        }
     }
 
     public override void _Process(double delta)

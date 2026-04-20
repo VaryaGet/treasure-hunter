@@ -49,5 +49,4 @@ position = Vector2(0, -24)
 texture = ExtResource("3_2w0tn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Radar" unique_id=2091830218]
-visible = false
 shape = SubResource("CircleShape2D_lygy6")

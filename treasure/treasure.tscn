@@ -8,17 +8,23 @@
 [ext_resource type="Texture2D" uid="uid://bqfcas82grj5c" path="res://treasure/grave.png" id="5_uh85m"]
 [ext_resource type="Texture2D" uid="uid://cds5mquikkau6" path="res://treasure/coin/coins.png" id="5_ys2ic"]
 [ext_resource type="Script" uid="uid://4cvbmlsmp7g8" path="res://treasure/TreasureBody.cs" id="6_uh85m"]
+[ext_resource type="Texture2D" uid="uid://cgfkw4ywepb8l" path="res://tools/shovel/shovel.png" id="8_3q50f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3q50f"]
+resource_local_to_scene = true
+shader = ExtResource("3_y7oq2")
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxofl"]
+shader = ExtResource("2_ys2ic")
+shader_parameter/alpha = 1.0
+shader_parameter/speed = -10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7oq2"]
 resource_local_to_scene = true
 shader = ExtResource("2_ys2ic")
 shader_parameter/alpha = 1.0
 shader_parameter/speed = 20.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3q50f"]
-resource_local_to_scene = true
-shader = ExtResource("3_y7oq2")
-shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uh85m"]
 resource_local_to_scene = true
@@ -168,6 +174,19 @@ radius = 31.016125
 script = ExtResource("1_rvv4y")
 Hp = 1
 
+[node name="Grave" type="Sprite2D" parent="." unique_id=754841629]
+material = SubResource("ShaderMaterial_3q50f")
+position = Vector2(2, 0)
+texture = ExtResource("5_uh85m")
+
+[node name="Cross" type="Sprite2D" parent="." unique_id=584622012]
+texture = ExtResource("4_a3u86")
+
+[node name="Shovel" type="Sprite2D" parent="." unique_id=1266122291]
+material = SubResource("ShaderMaterial_mxofl")
+position = Vector2(0, -37)
+texture = ExtResource("8_3q50f")
+
 [node name="Label" type="Label" parent="." unique_id=1683482826]
 material = SubResource("ShaderMaterial_y7oq2")
 anchors_preset = 8
@@ -185,20 +204,12 @@ size_flags_horizontal = 4
 text = "1"
 horizontal_alignment = 1
 
-[node name="Grave" type="Sprite2D" parent="." unique_id=754841629]
-material = SubResource("ShaderMaterial_3q50f")
-position = Vector2(2, 0)
-texture = ExtResource("5_uh85m")
-
 [node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1580569450]
 z_index = 1
 material = SubResource("ShaderMaterial_uh85m")
 sprite_frames = SubResource("SpriteFrames_e1u2g")
 animation = &"2"
 frame_progress = 0.43512583
-
-[node name="Cross" type="Sprite2D" parent="." unique_id=584622012]
-texture = ExtResource("4_a3u86")
 
 [node name="TreasureBody" type="StaticBody2D" parent="." unique_id=1924810820 groups=["treasureCol"]]
 collision_mask = 0
