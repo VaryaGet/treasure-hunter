@@ -30,29 +30,34 @@ public static class NodeExtension
 
     public static string FormatFloat(float value)
     {
-        if (value > 1000000)
-        {
-            // Формат с экспонентой, целочисленные нули после E+
-            return value.ToString("0.##E+00", CultureInfo.InvariantCulture);
-        }
-        else
-        {
-            // Обычный формат для чисел <= 1000000
-            return value.ToString(CultureInfo.InvariantCulture);
-        }
+        return FormatDecimal((decimal)value);
     }
 
-    public static string FormatDecimal(decimal value)
+    public static string FormatDecimal(decimal value, int maxDecimals = 2)
     {
-        if (value > 1000000)
+        if (value < 0)
         {
-            // Формат с экспонентой, целочисленные нули после E+
-            return value.ToString("0.##E+00", CultureInfo.InvariantCulture);
-        }
-        else
-        {
-            // Обычный формат для чисел <= 1000000
             return value.ToString(CultureInfo.InvariantCulture);
         }
+
+        var thresholds = new[]
+        {
+            (Value: 1_000_000_000_000m, Suffix: "T", Divisor: 1_000_000_000_000m),
+            (Value: 1_000_000_000m, Suffix: "B", Divisor: 1_000_000_000m),
+            (Value: 1_000_000m, Suffix: "M", Divisor: 1_000_000m),
+            (Value: 1_000m, Suffix: "K", Divisor: 1_000m)
+        };
+
+        foreach (var threshold in thresholds)
+        {
+            if (value >= threshold.Value)
+            {
+                var shortened = value / threshold.Divisor;
+                var format = $"0.{new string('#', maxDecimals)}";
+                return shortened.ToString(format, CultureInfo.InvariantCulture) + threshold.Suffix;
+            }
+        }
+
+        return value.ToString(CultureInfo.InvariantCulture);
     }
 }
