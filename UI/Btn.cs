@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using TreasureHunter.balance;
 using TreasureHunter.save;
 
@@ -14,15 +15,32 @@ public partial class Btn : StaticBody2D
 	public IBalance balance;
 	public Score score;
 	public bool enabled;
+	private StateGd stateGd;
+
+	private Dictionary<UpgradeType, string> upgrades = new Dictionary<UpgradeType, string>()
+	{
+		{ UpgradeType.DIGGER_QUANTITY, "Diggers" },
+		{ UpgradeType.DIGGER_SHOVEL, "Digger power" },
+		{ UpgradeType.DIGGER_RUN, "Digger speed" },
+		{ UpgradeType.TREASURE_BRONSE, "Bronze value" },
+		{ UpgradeType.TREASURE_SILVER, "Silver value" },
+		{ UpgradeType.TREASURE_GOLD, "Gold value" },
+		{ UpgradeType.SEARCHER_QUANTITY, "Searchers" },
+		{ UpgradeType.SEARCHER_SEARCH, "Searcher speed" },
+		{ UpgradeType.SEARCHER_QUALITY, "Searcher skill" },
+		{ UpgradeType.TREASURE_TIER, "Coin tier" },
+		{ UpgradeType.QUALITY, "Detector quality" },
+	};
 
 	public override void _Ready()
 	{
-		var godot = this.GetStateGd();
-		state = godot.state;
-		balance = godot.balance;
+		this.stateGd = this.GetStateGd();
+		state = this.stateGd.state;
+		balance = this.stateGd.balance;
 		InputEvent += MyInputEvent;
-		score = this.GetScore();
+		this.score = this.GetScore();
 		this.enabled = false;
+		GetNode<LabelNextCost>("NextCost").init();
 	}
 
 	public override void _Process(double delta)
@@ -38,14 +56,6 @@ public partial class Btn : StaticBody2D
 		if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true } && this.enabled == true)
 		{
 			GD.Print(123);
-			// GD.Print("Upgrade cost:");
-			// GD.Print(
-			//     (float)this.balance.Balanced(
-			//         this.type,
-			//         this.state.currentLevel(this.type)
-			//     ).Cost
-			// );
-			// GD.Print("")
 			var nextLevel = state.currentLevel(type) + 1;
 			if (balance.Checked(type, nextLevel))
 			{
@@ -61,5 +71,10 @@ public partial class Btn : StaticBody2D
 				this.score.AddScore(-1 * (float)nextValue.Cost);
 			}
 		}
+	}
+
+	public string Named()
+	{
+		return this.upgrades[this.type];
 	}
 }

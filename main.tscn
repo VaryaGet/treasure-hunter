@@ -38,6 +38,9 @@ size = Vector2(466, 254)
 
 [node name="Main" type="Node" unique_id=459475512]
 
+[node name="StateGodot" type="Node2D" parent="." unique_id=441059234]
+script = ExtResource("20_82xsv")
+
 [node name="Common" type="Node" parent="." unique_id=1783096421]
 
 [node name="Background" type="Node2D" parent="Common" unique_id=945194038]
@@ -122,9 +125,6 @@ offset_right = 52.0
 offset_bottom = 23.0
 text = "Score :"
 script = ExtResource("5_lquwl")
-
-[node name="StateGodot" type="Node2D" parent="." unique_id=441059234]
-script = ExtResource("20_82xsv")
 
 [node name="Buttons" type="Node2D" parent="." unique_id=204881837]
 
