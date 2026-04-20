@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://lhnu1cotmni2" path="res://letters/mainTheme.tres" id="7_dvyx2"]
 [ext_resource type="Texture2D" uid="uid://cgfkw4ywepb8l" path="res://tools/shovel/shovel.png" id="8_3q50f"]
 [ext_resource type="AudioStream" uid="uid://ccyk2t04l4xcc" path="res://audio/dig.wav" id="10_mxofl"]
+[ext_resource type="AudioStream" uid="uid://dimy8h2yx4xf" path="res://audio/coin.mp3" id="12_82tbq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3q50f"]
 resource_local_to_scene = true
@@ -232,3 +233,7 @@ wait_time = 2.0
 
 [node name="DigSound" type="AudioStreamPlayer" parent="." unique_id=2129388465]
 stream = ExtResource("10_mxofl")
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="." unique_id=103229841]
+stream = ExtResource("12_82tbq")
+bus = &"coin"

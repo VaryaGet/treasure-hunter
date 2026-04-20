@@ -16,6 +16,7 @@ public partial class Treasure : Node2D
     private Sprite2D _grave;
     private AnimatedSprite2D _coin;
     private AudioStreamPlayer _digSound;
+    private AudioStreamPlayer _coinSound;
     private Label _label;
     private Timer _dieTimer;
 
@@ -41,6 +42,7 @@ public partial class Treasure : Node2D
         _shovel = GetNode<Sprite2D>("Shovel");
         _label = GetNode<Label>("Label");
         _digSound = GetNode<AudioStreamPlayer>("DigSound");
+        _coinSound = GetNode<AudioStreamPlayer>("CoinSound");
 
         NewTreasure();
 
@@ -128,6 +130,8 @@ public partial class Treasure : Node2D
             _shovel.Show();
             _digSound.Play();
         }
+
+        _coinSound.Play();
 
         _label.Text = NodeExtension.FormatFloat(Money);
 
