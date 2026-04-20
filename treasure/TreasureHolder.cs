@@ -12,12 +12,12 @@ public class TreasureHolder
     private float spawnChance = 0.5f;
     private int tier = 3;
 
-    public TreasureHolder(IState state)
+    public TreasureHolder(StateGd state)
     {
-        FillStates();
+        FillStates(state);
     }
 
-    private void FillStates()
+    private void InitList()
     {
         _treasuresDto = new List<TreasureDto>(3);
         _treasuresDto.Add(new TreasureDto
@@ -42,14 +42,13 @@ public class TreasureHolder
         });
     }
 
-    public int GetMoney(int id)
+    public void FillStates(StateGd state)
     {
-        return _treasuresDto[id].Income;
-    }
-
-    public int SpawnChance(int id)
-    {
-        return _treasuresDto[id].Income;
+        InitList();
+        foreach (var st in state.state.current())
+        {
+            UpdateStates(st.Type, state.balance.Balanced(st.Type, st.Level).Value);
+        }
     }
 
     public TreasureDto GetRandomTreasure()
@@ -91,13 +90,13 @@ public class TreasureHolder
         switch (upgradeType)
         {
             case UpgradeType.TREASURE_BRONSE:
-                _treasuresDto[0].Income = (int)value;
+                _treasuresDto[0].Income = (float)value;
                 break;
             case UpgradeType.TREASURE_SILVER:
-                _treasuresDto[1].Income = (int)value;
+                _treasuresDto[1].Income = (float)value;
                 break;
             case UpgradeType.TREASURE_GOLD:
-                _treasuresDto[2].Income = (int)value;
+                _treasuresDto[2].Income = (float)value;
                 break;
             case UpgradeType.TREASURE_TIER:
                 tier = (int)value;
@@ -112,6 +111,6 @@ public class TreasureHolder
     {
         public int Id { get; set; }
         public string Type { get; set; }
-        public int Income { get; set; }
+        public float Income { get; set; }
     }
 }

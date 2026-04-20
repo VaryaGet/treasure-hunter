@@ -1,4 +1,5 @@
 using Godot;
+using TreasureHunter.balance;
 using TreasureHunter.save;
 using TreasureHunter.treasure;
 
@@ -11,11 +12,25 @@ public partial class TreasureSpawner : Node
     [Export] public MetalDetector MetalDetector;
 
     private TreasureHolder _treasureHolder;
-    private IState _state;
+    private bool _isReady = false;
 
     public override void _Ready()
     {
-        _treasureHolder = new TreasureHolder(_state);
+        this.GetStateGd().IsReady += Ready;
+        SetProcess(_isReady);
+        //todo handle event and reset
+    }
+
+    private void Ready()
+    {
+        _treasureHolder = new TreasureHolder(this.GetStateGd());
+        _isReady = true;
+        SetProcess(_isReady);
+    }
+
+    private void UpdateTreasure(BState state, BValue value)
+    {
+        _treasureHolder.UpdateStates(state.Type, value.Value);
     }
 
     public override void _Process(double delta)

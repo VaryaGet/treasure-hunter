@@ -21,4 +21,9 @@ public static class NodeExtension
     {
         return node.GetNode<StateGd>("/root/Main/StateGodot");
     }
+
+    public static Score GetScore(this Node node)
+    {
+        return node.GetNode<Score>("/root/Main/Score");
+    }
 }

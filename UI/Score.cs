@@ -3,11 +3,17 @@ using System;
 
 public partial class Score : Label
 {
-    private int _score = 0;
+    private float _score = 0;
+    private float _total = 0;
 
-    public void AddScore(int value)
+    public void AddScore(float value)
     {
         _score += value;
-        Text = "Score: " + _score;
+        if (value > 0)
+        {
+            _total += value;
+        }
+
+        Text = "Score: " + _score.ToString("N0");
     }
 }
