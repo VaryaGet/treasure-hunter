@@ -16,13 +16,17 @@ public partial class DiggerSpawner : Node2D
         _playArea = this.GetPlayArea();
         this.GetStateGd().Ready += OnReady;
         SetProcess(false);
-        //todo handle event and reset
     }
 
     private void OnReady()
     {
         _diggerHolder = new DiggerHolder(this.GetStateGd());
         SetProcess(true);
+        var btns = GetTree().GetNodesInGroup(Groups.UpgradesBtns).OfType<Btn>();
+        foreach (var btn in btns)
+        {
+            btn.Upgraded += UpdateDiggers;
+        }
     }
 
     public override void _Process(double delta)

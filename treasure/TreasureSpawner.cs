@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using TreasureHunter.balance;
 using TreasureHunter.save;
@@ -17,13 +18,17 @@ public partial class TreasureSpawner : Node
     {
         this.GetStateGd().Ready += OnReady;
         SetProcess(false);
-        //todo handle event and reset
     }
 
     private void OnReady()
     {
         _treasureHolder = new TreasureHolder(this.GetStateGd());
         SetProcess(true);
+        var btns = GetTree().GetNodesInGroup(Groups.UpgradesBtns).OfType<Btn>();
+        foreach (var btn in btns)
+        {
+            btn.Upgraded += UpdateTreasure;
+        }
     }
 
     private void UpdateTreasure(UpgradeType type, int level, float value, float cost)
