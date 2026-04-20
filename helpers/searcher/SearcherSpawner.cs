@@ -39,6 +39,7 @@ public partial class SearcherSpawner : Node2D
             foreach (var searcher in searchers)
             {
                 searcher.DumbTimer.WaitTime = _searcherHolder.SearchDelay;
+                searcher.WalkTimer.WaitTime = _searcherHolder.SearchDelay;
             }
         }
     }
@@ -49,5 +50,6 @@ public partial class SearcherSpawner : Node2D
         searcher.GlobalPosition = _playArea.GetRandomPosition();
         AddChild(searcher);
         searcher.DumbTimer.WaitTime = _searcherHolder.SearchDelay;
+        searcher.WalkTimer.WaitTime = _searcherHolder.SearchDelay;
     }
 }

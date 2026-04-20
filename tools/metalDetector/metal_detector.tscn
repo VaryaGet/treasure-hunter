@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cq8eoxh7mrvpe" path="res://tools/metalDetector/MetalDetector.cs" id="1_tvpgg"]
 [ext_resource type="Script" uid="uid://cjuwxsk61lgc6" path="res://tools/metalDetector/Radar.cs" id="2_ac4h6"]
+[ext_resource type="Texture2D" uid="uid://cap6itfyc4843" path="res://tools/metalDetector/locator.png" id="2_ek6eu"]
 [ext_resource type="Texture2D" uid="uid://duie8bavsjad0" path="res://tools/metalDetector/metal_detector_5.png" id="3_2w0tn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2w0tn"]
@@ -37,6 +38,13 @@ collision_layer = 2
 input_pickable = false
 script = ExtResource("2_ac4h6")
 FindPercentage = 0.8
+
+[node name="Locator" type="Node2D" parent="Radar" unique_id=1627691207]
+
+[node name="Signal" type="Sprite2D" parent="Radar/Locator" unique_id=1664666806]
+modulate = Color(1, 1, 1, 0.6901961)
+position = Vector2(0, 24)
+texture = ExtResource("2_ek6eu")
 
 [node name="Level" type="Sprite2D" parent="Radar" unique_id=1732836439]
 position = Vector2(-5.4584675, -33.36359)

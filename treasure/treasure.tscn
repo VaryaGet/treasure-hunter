@@ -16,6 +16,7 @@ shader = ExtResource("3_y7oq2")
 shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mxofl"]
+resource_local_to_scene = true
 shader = ExtResource("2_ys2ic")
 shader_parameter/alpha = 1.0
 shader_parameter/speed = -10.0

@@ -11,6 +11,7 @@ public partial class Radar : Area2D
 
     private HashSet<TreasureBody> _treasuresInZone = new();
     private GradientTexture1D _texture;
+    private Node2D _locator;
 
     public override void _Ready()
     {
@@ -18,6 +19,7 @@ public partial class Radar : Area2D
         BodyExited += OnBodyExited;
         Radius = ((CircleShape2D)GetNode<CollisionShape2D>("CollisionShape2D").Shape).Radius;
         _texture = GetNode<Sprite2D>("Level").Texture as GradientTexture1D;
+        _locator = GetNode<Node2D>("Locator");
     }
 
     private void OnBodyEntered(Node2D body)
@@ -46,6 +48,7 @@ public partial class Radar : Area2D
         if (_treasuresInZone.Count != 0)
         {
             var maxDist = 0f;
+            TreasureBody nearestTreasure = null;
             foreach (var treasureBody in _treasuresInZone)
             {
                 var dist = GlobalPosition.DistanceTo(treasureBody.GlobalPosition);
@@ -57,7 +60,13 @@ public partial class Radar : Area2D
                 if (maxDist < nDist)
                 {
                     maxDist = nDist;
+                    nearestTreasure = treasureBody;
                 }
+            }
+
+            if (nearestTreasure != null)
+            {
+                UpdateLocator(nearestTreasure.GlobalPosition);
             }
 
             UpdateTexture(maxDist);
@@ -65,11 +74,20 @@ public partial class Radar : Area2D
         else
         {
             UpdateTexture(0);
+            _locator.Hide();
         }
     }
 
     private void UpdateTexture(float value)
     {
         _texture.Gradient.SetOffset(1, value);
+    }
+
+    private void UpdateLocator(Vector2 target)
+    {
+        var direction = (target - GlobalPosition).Normalized();
+        var angle = direction.Angle() - Mathf.Pi / 2;
+        _locator.Rotation = angle;
+        _locator.Show();
     }
 }

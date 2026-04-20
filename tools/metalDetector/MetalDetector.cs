@@ -3,6 +3,7 @@ using System;
 
 public partial class MetalDetector : Node2D
 {
+    [Export] public float RadiusDivider = 2f;
     private PlayArea _playArea;
     private bool _isDragging = false;
     private Radar _radar;
@@ -47,6 +48,6 @@ public partial class MetalDetector : Node2D
 
     public bool IsInZone(Vector2 position)
     {
-        return Geometry2D.IsPointInCircle(position, GlobalPosition, _radar.Radius);
+        return Geometry2D.IsPointInCircle(position, GlobalPosition, _radar.Radius / RadiusDivider);
     }
 }
