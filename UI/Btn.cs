@@ -17,6 +17,8 @@ public partial class Btn : StaticBody2D
     public bool enabled;
     private StateGd stateGd;
 
+    private Sprite2D _sprite;
+
     private Dictionary<UpgradeType, string> upgrades = new()
     {
         { UpgradeType.DIGGER_QUANTITY, "Diggers" },
@@ -42,6 +44,20 @@ public partial class Btn : StaticBody2D
         enabled = false;
         GetNode<LabelNextCost>("Labels/NextCost").init();
         GetNode<LabelNextLvl>("Labels/NextLvl").init();
+
+        _sprite = GetNode<Sprite2D>("Sprite");
+
+        MouseEntered += () =>
+        {
+            _sprite.Modulate = new Color(1.2f, 1.2f, 0.8f);
+            _sprite.Scale = new Vector2(1.05f, 1.05f);
+        };
+
+        MouseExited += () =>
+        {
+            _sprite.Modulate = Colors.White;
+            _sprite.Scale = Vector2.One;
+        };
     }
 
     public override void _Process(double delta)
