@@ -3,12 +3,12 @@ using System;
 
 public partial class Score : Label
 {
-    public float score = 0;
+    public float score = 999999999999;
     public float Total = 0;
 
     public override void _Ready()
     {
-        AddThemeColorOverride("font_color", new Color(0, 0, 0));
+        Text = "Score: " + score.ToString("N0");
     }
 
     public void AddScore(float value)
@@ -19,6 +19,6 @@ public partial class Score : Label
             Total += value;
         }
 
-        Text = "Score: " + score.ToString("N0");
+        Text = "Score: " + NodeExtension.FormatFloat(score);
     }
 }

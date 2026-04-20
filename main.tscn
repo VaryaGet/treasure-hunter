@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cge3vmcw401aa" path="res://helpers/digger/digger.tscn" id="13_vivmo"]
 [ext_resource type="PackedScene" uid="uid://djjssbrfs7qt8" path="res://helpers/searcher/searcher.tscn" id="14_w48qg"]
 [ext_resource type="Script" uid="uid://bff6l6omwwd0f" path="res://helpers/digger/DiggerSpawner.cs" id="15_82xsv"]
+[ext_resource type="Theme" uid="uid://lhnu1cotmni2" path="res://letters/mainTheme.tres" id="19_ryguw"]
 [ext_resource type="Script" uid="uid://dqa1w7le2cx33" path="res://save/StateGd.cs" id="20_82xsv"]
 [ext_resource type="PackedScene" uid="uid://bqcyceoospdt1" path="res://UI/btn.tscn" id="20_getpj"]
 [ext_resource type="PackedScene" uid="uid://5aggblnqoxq1" path="res://music.tscn" id="21_getpj"]
@@ -113,8 +114,11 @@ Digger = ExtResource("13_vivmo")
 position = Vector2(258, 234)
 
 [node name="Score" type="Label" parent="." unique_id=141910189]
-offset_right = 52.0
-offset_bottom = 23.0
+offset_left = 7.0
+offset_top = 4.0
+offset_right = 59.0
+offset_bottom = 27.0
+theme = ExtResource("19_ryguw")
 text = "Score :"
 script = ExtResource("5_lquwl")
 

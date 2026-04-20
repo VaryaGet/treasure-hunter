@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://lhnu1cotmni2"]
+
+[ext_resource type="FontFile" uid="uid://dkgimhr1k748y" path="res://letters/LCD40x2Display-Regular.otf" id="1_670xj"]
+
+[resource]
+Label/colors/font_color = Color(0.07551012, 0.07551012, 0.07551011, 1)
+Label/colors/font_outline_color = Color(0.9413647, 0.9413647, 0.94136465, 1)
+Label/font_sizes/font_size = 5
+Label/fonts/font = ExtResource("1_670xj")

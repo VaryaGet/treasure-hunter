@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Globalization;
+using Godot;
 
 public static class NodeExtension
 {
@@ -25,5 +26,33 @@ public static class NodeExtension
     public static Score GetScore(this Node node)
     {
         return node.GetNode<Score>("/root/Main/Score");
+    }
+
+    public static string FormatFloat(float value)
+    {
+        if (value > 1000000)
+        {
+            // Формат с экспонентой, целочисленные нули после E+
+            return value.ToString("0.##E+00", CultureInfo.InvariantCulture);
+        }
+        else
+        {
+            // Обычный формат для чисел <= 1000000
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
+    }
+
+    public static string FormatDecimal(decimal value)
+    {
+        if (value > 1000000)
+        {
+            // Формат с экспонентой, целочисленные нули после E+
+            return value.ToString("0.##E+00", CultureInfo.InvariantCulture);
+        }
+        else
+        {
+            // Обычный формат для чисел <= 1000000
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
     }
 }

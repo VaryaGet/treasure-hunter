@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bqfcas82grj5c" path="res://treasure/grave.png" id="5_uh85m"]
 [ext_resource type="Texture2D" uid="uid://cds5mquikkau6" path="res://treasure/coin/coins.png" id="5_ys2ic"]
 [ext_resource type="Script" uid="uid://4cvbmlsmp7g8" path="res://treasure/TreasureBody.cs" id="6_uh85m"]
+[ext_resource type="Theme" uid="uid://lhnu1cotmni2" path="res://letters/mainTheme.tres" id="7_dvyx2"]
 [ext_resource type="Texture2D" uid="uid://cgfkw4ywepb8l" path="res://tools/shovel/shovel.png" id="8_3q50f"]
 [ext_resource type="AudioStream" uid="uid://ccyk2t04l4xcc" path="res://audio/dig.wav" id="10_mxofl"]
 
@@ -203,6 +204,7 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme = ExtResource("7_dvyx2")
 text = "1"
 horizontal_alignment = 1
 

@@ -129,7 +129,7 @@ public partial class Treasure : Node2D
             _digSound.Play();
         }
 
-        _label.Text = Money.ToString();
+        _label.Text = NodeExtension.FormatFloat(Money);
 
         _coin.SetAnimation(CurrAnimation.ToString());
         _coin.Play();

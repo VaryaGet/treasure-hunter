@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d2yanr5h0c7j3" path="res://UI/Btn.cs" id="1_yi3pp"]
 [ext_resource type="Texture2D" uid="uid://b5qggprn0uilu" path="res://UI/upgrades/paper_2.png" id="2_hh7xa"]
+[ext_resource type="Theme" uid="uid://lhnu1cotmni2" path="res://letters/mainTheme.tres" id="3_4df1u"]
 [ext_resource type="Script" uid="uid://15mrrnogwsro" path="res://UI/LabelName.cs" id="3_lnxul"]
 [ext_resource type="Script" uid="uid://dqa5c47eph5bp" path="res://UI/LabelNextCost.cs" id="4_4df1u"]
-[ext_resource type="Script" uid="uid://b2vh6rcmef3m" path="res://UI/LabelNextLvl.cs" id="5_ru13v"]
+[ext_resource type="Script" uid="uid://c7kxph2sty65s" path="res://UI/LabelNextLvl.cs" id="5_ru13v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d13ii"]
 size = Vector2(61, 46)
@@ -21,26 +22,55 @@ texture = ExtResource("2_hh7xa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1578369463]
 shape = SubResource("RectangleShape2D_d13ii")
 
-[node name="Name" type="Label" parent="." unique_id=973790764]
+[node name="Labels" type="Control" parent="." unique_id=1471597184]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -27.0
-offset_top = -15.0
-offset_right = 17.0
-offset_bottom = 8.0
-text = "name"
+offset_top = -20.0
+offset_right = 27.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Labels" unique_id=973790764]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 19.0
+grow_horizontal = 2
+theme = ExtResource("3_4df1u")
+text = "kSearcher speed"
+autowrap_mode = 2
 script = ExtResource("3_lnxul")
 
-[node name="NextCost" type="Label" parent="." unique_id=1515263895]
-offset_left = -27.0
-offset_top = -7.0
-offset_right = 13.0
-offset_bottom = 16.0
+[node name="NextCost" type="Label" parent="Labels" unique_id=1515263895]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 1.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4df1u")
 text = "cost"
 script = ExtResource("4_4df1u")
 
-[node name="NextLvl" type="Label" parent="." unique_id=1643919644]
-offset_left = -27.0
-offset_top = 3.0
-offset_right = 33.0
-offset_bottom = 26.0
+[node name="NextLvl" type="Label" parent="Labels" unique_id=1643919644]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_4df1u")
 text = "59->60"
 script = ExtResource("5_ru13v")
