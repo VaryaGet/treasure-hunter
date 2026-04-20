@@ -12,20 +12,18 @@ public partial class TreasureSpawner : Node
     [Export] public MetalDetector MetalDetector;
 
     private TreasureHolder _treasureHolder;
-    private bool _isReady = false;
 
     public override void _Ready()
     {
-        this.GetStateGd().IsReady += Ready;
-        SetProcess(_isReady);
+        this.GetStateGd().Ready += Ready;
+        SetProcess(false);
         //todo handle event and reset
     }
 
     private void Ready()
     {
         _treasureHolder = new TreasureHolder(this.GetStateGd());
-        _isReady = true;
-        SetProcess(_isReady);
+        SetProcess(true);
     }
 
     private void UpdateTreasure(BState state, BValue value)
