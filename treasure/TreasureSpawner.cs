@@ -16,8 +16,12 @@ public partial class TreasureSpawner : Node
 
     public override void _Ready()
     {
-        this.GetStateGd().Ready += OnReady;
-        SetProcess(false);
+        _treasureHolder = new TreasureHolder(this.GetStateGd());
+        var btns = GetTree().GetNodesInGroup(Groups.UpgradesBtns).OfType<Btn>();
+        foreach (var btn in btns)
+        {
+            btn.Upgraded += UpdateTreasure;
+        }
     }
 
     private void OnReady()
