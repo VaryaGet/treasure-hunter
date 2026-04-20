@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://nkgctlygk64t"]
 
 [ext_resource type="Script" uid="uid://7on3eqwcj5ki" path="res://treasure/TreasureSpawner.cs" id="2_0xm2m"]
-[ext_resource type="Shader" path="res://UI/background/sea.gdshader" id="2_2cqfq"]
+[ext_resource type="Shader" uid="uid://mmqtkki77536" path="res://UI/background/sea.gdshader" id="2_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dqiu516ythlny" path="res://UI/background/background.png" id="3_dg77c"]
 [ext_resource type="Script" uid="uid://csx661d4hj6wn" path="res://tools/shovel/Shovel.cs" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dkp4xnhyepfbv" path="res://treasure/treasure.tscn" id="4_lquwl"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bff6l6omwwd0f" path="res://helpers/digger/DiggerSpawner.cs" id="15_82xsv"]
 [ext_resource type="Texture2D" uid="uid://b5qggprn0uilu" path="res://UI/upgrades/paper_2.png" id="19_getpj"]
 [ext_resource type="Script" uid="uid://dqa1w7le2cx33" path="res://save/StateGd.cs" id="20_82xsv"]
+[ext_resource type="TextFile" uid="uid://k5mi2a3yt6nv" path="res://resources/LD59.csv" id="21_getpj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yaehf"]
 shader = ExtResource("2_2cqfq")
@@ -163,4 +164,4 @@ grow_vertical = 2
 
 [node name="StateGodot" type="Node2D" parent="." unique_id=441059234]
 script = ExtResource("20_82xsv")
-balancePath = null
+balancePath = ExtResource("21_getpj")
