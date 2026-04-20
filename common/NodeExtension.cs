@@ -42,6 +42,8 @@ public static class NodeExtension
 
         var thresholds = new[]
         {
+            (Value: 1_000_000_000_000_000_000m, Suffix: "Qt", Divisor: 1_000_000_000_000_000_000m),
+            (Value: 1_000_000_000_000_000m, Suffix: "Q", Divisor: 1_000_000_000_000_000m),
             (Value: 1_000_000_000_000m, Suffix: "T", Divisor: 1_000_000_000_000m),
             (Value: 1_000_000_000m, Suffix: "B", Divisor: 1_000_000_000m),
             (Value: 1_000_000m, Suffix: "M", Divisor: 1_000_000m),
