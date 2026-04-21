@@ -26,8 +26,8 @@ public partial class Btn : StaticBody2D
     private Dictionary<UpgradeType, string> upgrades = new()
     {
         { UpgradeType.DIGGER_QUANTITY, "Diggers" },
-        { UpgradeType.DIGGER_SHOVEL, "Digger power" },
-        { UpgradeType.DIGGER_RUN, "Digger speed" },
+        { UpgradeType.DIGGER_SHOVEL, "Digger dig delay" },
+        { UpgradeType.DIGGER_RUN, "Digger run speed" },
         { UpgradeType.TREASURE_BRONSE, "Bronze value" },
         { UpgradeType.TREASURE_SILVER, "Silver value" },
         { UpgradeType.TREASURE_GOLD, "Gold value" },
